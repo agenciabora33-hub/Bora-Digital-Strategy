@@ -87,9 +87,9 @@ export default function App() {
 
   // Render full landing page
   return (
-    <div className="min-h-screen bg-[#0B0F17] text-[#F3F4F6] selection:bg-[#2563EB] selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#121417] text-[#F3F4F6] selection:bg-[#FA842D] selection:text-white flex flex-col">
       {/* Top Fixed Navigation */}
-      <Navbar onNavigateToPlanos={() => navigateTo('planos')} />
+      <Navbar />
 
       {/* Main Page Sections */}
       <main id="main-content" className="flex-grow">
@@ -118,7 +118,7 @@ export default function App() {
         <Testimonials />
 
         {/* 9. High-Impact Closing CTA Banner */}
-        <section id="conversao-final" className="py-16 bg-gradient-to-br from-blue-950/80 via-[#0B0F17] to-slate-900 border-y border-blue-600/30">
+        <section id="conversao-final" className="py-16 bg-gradient-to-br from-orange-950/35 via-[#181A1D] to-stone-900 border-y border-orange-500/30">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-semibold mb-4">
               <ShieldCheck className="w-4 h-4" />
@@ -149,7 +149,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('planos')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-4 rounded-xl text-base transition-colors shadow-lg cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FA842D] hover:bg-[#ea731b] text-white font-bold px-6 py-4 rounded-xl text-base transition-colors shadow-lg shadow-orange-500/20 cursor-pointer"
               >
                 <span>Ver Opções de Planos e Preços</span>
                 <ArrowRight className="w-5 h-5" />
@@ -181,7 +181,7 @@ export default function App() {
       <WhatsAppFloatingButton />
 
       {/* Footer */}
-      <Footer />
+      <Footer onNavigateToPlanos={() => navigateTo('planos')} />
     </div>
   );
 }

@@ -6,22 +6,22 @@ export const ServicesSection: React.FC = () => {
   const getIcon = (id: string) => {
     switch (id) {
       case 'site-profissional':
-        return <Globe className="w-6 h-6 text-blue-400" />;
+        return <Globe className="w-6 h-6 text-[#FA842D]" />;
       case 'google-ads':
         return <Target className="w-6 h-6 text-emerald-400" />;
       case 'google-meu-negocio':
         return <MapPinned className="w-6 h-6 text-amber-400" />;
       default:
-        return <Zap className="w-6 h-6 text-cyan-400" />;
+        return <Zap className="w-6 h-6 text-orange-400" />;
     }
   };
 
   return (
-    <section id="servicos" className="py-20 bg-[#0B0F17] relative border-b border-gray-800/80">
+    <section id="servicos" className="py-20 bg-[#121417] relative border-b border-gray-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Smartphone className="w-4 h-4" />
             <span>Soluções Mobile-First de Alta Conversão</span>
           </div>
@@ -40,15 +40,15 @@ export const ServicesSection: React.FC = () => {
           {SERVICES.map((service) => (
             <div
               key={service.id}
-              className="bg-[#111827] rounded-2xl p-7 sm:p-8 border border-gray-800/90 hover:border-gray-700 transition-all duration-300 shadow-xl flex flex-col justify-between"
+              className="bg-[#191C20] rounded-2xl p-7 sm:p-8 border border-[#2D3238] hover:border-[#3E454E] transition-all duration-300 shadow-xl flex flex-col justify-between"
             >
               <div>
                 {/* Header with Icon and Badge */}
                 <div className="flex items-center justify-between gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-stone-900 border border-stone-800 flex items-center justify-center">
                     {getIcon(service.id)}
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-800 text-blue-300 border border-slate-700">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-stone-800/90 text-orange-300 border border-stone-700">
                     {service.badge}
                   </span>
                 </div>
@@ -66,7 +66,7 @@ export const ServicesSection: React.FC = () => {
                 </p>
 
                 {/* Target Audience */}
-                <div className="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 mb-5 text-xs sm:text-sm text-gray-300">
+                <div className="bg-stone-900/80 rounded-xl p-3.5 border border-stone-800 mb-5 text-xs sm:text-sm text-gray-300">
                   <strong className="text-white block mb-1">Público recomendado:</strong>
                   {service.targetAudience}
                 </div>
@@ -85,7 +85,7 @@ export const ServicesSection: React.FC = () => {
                 </div>
 
                 {/* Conversion Objective */}
-                <div className="text-xs text-blue-300 bg-blue-950/30 border border-blue-800/40 p-3 rounded-lg mb-6">
+                <div className="text-xs text-orange-200 bg-orange-950/30 border border-orange-800/40 p-3 rounded-lg mb-6">
                   <strong className="text-white">Objetivo final: </strong>
                   {service.conversionFocus}
                 </div>
@@ -107,7 +107,7 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         {/* Banner with combo package */}
-        <div className="mt-12 bg-gradient-to-r from-slate-900 via-blue-950/50 to-slate-900 border border-blue-500/30 rounded-2xl p-6 sm:p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-12 bg-gradient-to-r from-stone-900 via-orange-950/40 to-stone-900 border border-orange-500/30 rounded-2xl p-6 sm:p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <span className="text-xs uppercase tracking-wider font-bold text-amber-400">
               Estratégia 360º de Máxima Tração

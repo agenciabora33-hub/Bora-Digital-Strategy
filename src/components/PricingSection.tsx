@@ -22,14 +22,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
     }
   };
   return (
-    <section id="planos" className="py-20 bg-[#0B0F17] border-b border-gray-800/80 relative">
+    <section id="planos" className="py-20 bg-[#121417] border-b border-gray-800/80 relative">
       {/* Background glow behind highlighted plan */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[650px] h-[350px] sm:h-[450px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[650px] h-[350px] sm:h-[450px] bg-[#FA842D]/12 blur-[130px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="w-4 h-4 text-emerald-400" />
             <span>Planos Transparentes & Sem Pegadinhas</span>
           </div>
@@ -54,8 +54,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                 id={`card-${plan.id}`}
                 className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 ${
                   isHighlight
-                    ? 'bg-gradient-to-b from-[#162238] via-[#111A2E] to-[#0D1525] border-2 border-emerald-500/80 shadow-[0_0_35px_rgba(16,185,129,0.18)] lg:-translate-y-2 z-10'
-                    : 'bg-[#111827] border border-gray-800/90 hover:border-gray-700 shadow-xl'
+                    ? 'bg-gradient-to-b from-[#272B31] via-[#1E2227] to-[#16181B] border-2 border-[#FA842D] shadow-[0_0_35px_rgba(250,132,45,0.22)] lg:-translate-y-2 z-10'
+                    : 'bg-[#191C20] border border-[#2D3238] hover:border-[#3E454E] shadow-xl'
                 }`}
               >
                 {/* Top Badge for OPÇÃO 2 */}
@@ -79,7 +79,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                       {plan.optionLabel}
                     </span>
                     {!isHighlight && plan.badge && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-950 border border-blue-800/60 text-blue-300">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-orange-950/80 border border-orange-700/60 text-orange-300">
                         {plan.badge}
                       </span>
                     )}
@@ -127,7 +127,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                           className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                             isHighlight
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                              : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                              : 'bg-orange-500/20 text-[#FA842D] border border-orange-500/30'
                           }`}
                         >
                           <Check className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -153,7 +153,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                     className={`w-full flex items-center justify-center gap-2 font-extrabold py-3.5 px-4 rounded-xl text-sm sm:text-base transition-all duration-200 active:scale-98 shadow-md ${
                       isHighlight
                         ? 'bg-[#25D366] hover:bg-[#20ba59] text-slate-950 hover:shadow-emerald-500/30 shadow-emerald-500/20 animate-whatsapp-pulse'
-                        : 'bg-blue-600 hover:bg-blue-500 text-white hover:shadow-blue-500/20'
+                        : 'bg-[#FA842D] hover:bg-[#ea731b] text-white hover:shadow-orange-500/25'
                     }`}
                   >
                     <MessageCircle
@@ -173,9 +173,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
         </div>
 
         {/* 3. Observações e Regras de Negócio (Microcopy de Rodapé do Bloco) */}
-        <div className="mt-12 bg-[#131B2B] border border-gray-800 rounded-2xl p-6 sm:p-8 max-w-5xl mx-auto">
+        <div className="mt-12 bg-[#1B1E23] border border-[#2D3136] rounded-2xl p-6 sm:p-8 max-w-5xl mx-auto">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center shrink-0 text-blue-400">
+            <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center shrink-0 text-[#FA842D]">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
@@ -195,10 +195,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
         </div>
 
         {/* Banner para Enviar Link Separado aos Clientes */}
-        <div className="mt-8 bg-gradient-to-r from-blue-950/60 via-[#111A2C] to-slate-900 border border-blue-500/40 rounded-2xl p-5 sm:p-6 max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+        <div className="mt-8 bg-gradient-to-r from-orange-950/40 via-[#1C1F23] to-stone-900 border border-orange-500/35 rounded-2xl p-5 sm:p-6 max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#FA842D] flex items-center gap-1.5 mb-1">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               Link Exclusivo para Clientes
             </span>
             <h4 className="text-base sm:text-lg font-bold text-white">
@@ -213,7 +213,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
             <button
               type="button"
               onClick={copyProposalUrl}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-gray-200 border border-slate-600 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-stone-800 hover:bg-stone-700 text-gray-200 border border-stone-600 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer"
               title="Copiar URL direta da proposta"
             >
               {copiedLink ? (
@@ -223,7 +223,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-blue-400" />
+                  <Copy className="w-3.5 h-3.5 text-[#FA842D]" />
                   <span>Copiar Link</span>
                 </>
               )}
@@ -233,7 +233,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
               <button
                 type="button"
                 onClick={onOpenPlanosPage}
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md cursor-pointer"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-[#FA842D] hover:bg-[#ea731b] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-orange-500/20 cursor-pointer"
               >
                 <span>Ver Página de Proposta</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -241,7 +241,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
             ) : (
               <a
                 href="/planos"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 bg-[#FA842D] hover:bg-[#ea731b] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-orange-500/20"
               >
                 <span>Ver Página de Proposta</span>
                 <ExternalLink className="w-3.5 h-3.5" />

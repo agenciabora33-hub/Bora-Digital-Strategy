@@ -1,30 +1,29 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl, KEYWORD_MATRIX } from '../data/content';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigateToPlanos?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer id="footer-section" className="bg-[#070A10] border-t border-gray-800 text-gray-400 text-sm">
+    <footer id="footer-section" className="bg-[#0F1114] border-t border-[#2A2E33] text-gray-400 text-sm">
       {/* Upper Footer: Core Info */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand & Mission */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center overflow-hidden">
-                <img
-                  src="/logo-transparent.png"
-                  alt="Logo Bora Digital Strategy"
-                  className="w-full h-full object-contain p-1"
-                />
-              </div>
-              <span className="text-lg font-bold text-white font-display">
-                BORA <span className="text-blue-500">DIGITAL</span>
-              </span>
+              <img
+                src="/logo-transparent.png"
+                alt="Logo Bora Digital Strategy"
+                className="h-10 sm:h-12 w-auto max-w-[220px] object-contain"
+              />
             </div>
 
             <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
@@ -44,7 +43,7 @@ export const Footer: React.FC = () => {
             </h4>
             <div className="space-y-2 text-xs sm:text-sm">
               <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-1" />
+                <MapPin className="w-4 h-4 text-[#FA842D] shrink-0 mt-1" />
                 <span>
                   {COMPANY_INFO.address.street}, {COMPANY_INFO.address.suite}
                   <br />
@@ -81,7 +80,7 @@ export const Footer: React.FC = () => {
                 href={`mailto:${COMPANY_INFO.email}`}
                 className="flex items-center gap-2 hover:text-white transition-colors"
               >
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
+                <Mail className="w-4 h-4 text-[#FA842D] shrink-0" />
                 <span>{COMPANY_INFO.email}</span>
               </a>
             </div>
@@ -90,7 +89,7 @@ export const Footer: React.FC = () => {
           {/* Strategic Navigation & Keywords */}
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-white">
-              Especialidades
+              Especialidades & Proposta
             </h4>
             <ul className="space-y-1.5 text-xs text-gray-400">
               <li>• Site Profissional para Médicos e Dentistas</li>
@@ -98,6 +97,18 @@ export const Footer: React.FC = () => {
               <li>• Campanhas de Anúncios no Google Ads (ROI)</li>
               <li>• Cadastro e Otimização no Google Meu Negócio</li>
               <li>• SEO Local e Otimização para IAs (GEO)</li>
+              {onNavigateToPlanos && (
+                <li className="pt-2">
+                  <button
+                    type="button"
+                    onClick={onNavigateToPlanos}
+                    className="inline-flex items-center gap-1.5 text-[#FA842D] hover:text-orange-300 font-bold transition-colors cursor-pointer text-xs"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Ver Página de Planos e Proposta</span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

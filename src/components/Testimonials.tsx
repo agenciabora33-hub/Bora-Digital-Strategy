@@ -4,11 +4,11 @@ import { TESTIMONIALS, buildWhatsAppUrl } from '../data/content';
 
 export const Testimonials: React.FC = () => {
   return (
-    <section id="depoimentos" className="py-20 bg-[#0B0F17] border-b border-gray-800/80">
+    <section id="depoimentos" className="py-20 bg-[#121417] border-b border-gray-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Star className="w-4 h-4 fill-emerald-400 text-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
             <span>Resultados e Prova Social</span>
           </div>
 
@@ -25,11 +25,11 @@ export const Testimonials: React.FC = () => {
           {TESTIMONIALS.map((item) => (
             <div
               key={item.id}
-              className="bg-[#111827] border border-gray-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-lg hover:border-gray-700 transition-all"
+              className="bg-[#191C20] border border-[#2D3238] rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-lg hover:border-orange-500/50 transition-all"
             >
               <div>
                 {/* Highlight Badge */}
-                <div className="inline-block bg-blue-950/60 border border-blue-600/40 text-blue-300 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                <div className="inline-block bg-orange-950/60 border border-orange-600/40 text-orange-300 text-xs font-bold px-3 py-1 rounded-full mb-4">
                   {item.highlight}
                 </div>
 
@@ -50,7 +50,7 @@ export const Testimonials: React.FC = () => {
               <div className="pt-4 border-t border-gray-800">
                 <p className="text-base font-bold text-white leading-tight">{item.name}</p>
                 <p className="text-xs text-gray-400">{item.role} • {item.company}</p>
-                <p className="text-[11px] text-blue-400 mt-1">{item.location}</p>
+                <p className="text-[11px] text-[#FA842D] mt-1">{item.location}</p>
                 <div className="mt-2 text-[10px] uppercase tracking-wider text-emerald-400 font-medium">
                   {item.serviceUsed}
                 </div>

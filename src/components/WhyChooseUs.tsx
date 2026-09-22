@@ -4,7 +4,7 @@ import { Smartphone, Zap, Bot, Users, ShieldCheck, TrendingUp } from 'lucide-rea
 export const WhyChooseUs: React.FC = () => {
   const differentials = [
     {
-      icon: <Smartphone className="w-6 h-6 text-blue-400" />,
+      icon: <Smartphone className="w-6 h-6 text-[#FA842D]" />,
       title: 'Engenharia Mobile-First Real',
       description: 'Mais de 85% dos cliques em anúncios locais vêm de celulares. Criamos interfaces leves, com botões anatômicos para o polegar e carregamento instantâneo em 4G/5G.'
     },
@@ -14,7 +14,7 @@ export const WhyChooseUs: React.FC = () => {
       description: 'Não basta atrair o clique; é preciso converter. Reduzimos a taxa de rejeição com copywriting persuasivo (EEAT) que conduz o visitante a iniciar o diálogo no WhatsApp.'
     },
     {
-      icon: <Bot className="w-6 h-6 text-cyan-400" />,
+      icon: <Bot className="w-6 h-6 text-orange-400" />,
       title: 'Pronto para GEO & IAs Generativas',
       description: 'Estruturação avançada de dados (Schema.org JSON-LD) para que sua empresa seja encontrada tanto no Google e Bing tradicionais quanto em respostas do ChatGPT, Gemini e Copilot.'
     },
@@ -24,22 +24,22 @@ export const WhyChooseUs: React.FC = () => {
       description: 'Eliminamos palavras-chave inúteis que torcem o orçamento. Cada campanha é orientada ao retorno sobre investimento (ROI) e contatos reais de clientes qualificados.'
     },
     {
-      icon: <Users className="w-6 h-6 text-purple-400" />,
+      icon: <Users className="w-6 h-6 text-orange-300" />,
       title: 'Contato Direto com o Estrategista',
       description: 'Sem burocracia ou intermediários. Você conversa diretamente com quem planeja, programa e gerencia sua presença digital pelo WhatsApp comercial.'
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-rose-400" />,
+      icon: <ShieldCheck className="w-6 h-6 text-emerald-400" />,
       title: 'Conformidade com Diretrizes Oficiais',
       description: 'Respeito estrito às políticas do Google Ads e boas práticas de SEO. Sua empresa cresce de forma sólida, segura e perene, sem atalhos perigosos.'
     }
   ];
 
   return (
-    <section id="diferenciais" className="py-20 bg-[#0E131F] border-b border-gray-800/80">
+    <section id="diferenciais" className="py-20 bg-[#15171B] border-b border-gray-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Zap className="w-4 h-4 text-amber-400" />
             <span>Diferenciais Competitivos</span>
           </div>
@@ -57,7 +57,7 @@ export const WhyChooseUs: React.FC = () => {
           {differentials.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#131B2B] border border-gray-800/90 hover:border-gray-700 rounded-2xl p-6 sm:p-7 transition-all duration-200"
+              className="bg-[#1B1E23] border border-[#2D3136] hover:border-orange-500/50 rounded-2xl p-6 sm:p-7 transition-all duration-200"
             >
               <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-5">
                 {item.icon}

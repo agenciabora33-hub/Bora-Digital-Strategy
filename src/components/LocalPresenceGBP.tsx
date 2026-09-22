@@ -4,12 +4,12 @@ import { COMPANY_INFO, buildWhatsAppUrl } from '../data/content';
 
 export const LocalPresenceGBP: React.FC = () => {
   return (
-    <section id="localizacao" className="py-20 bg-[#0B0F17] border-b border-gray-800/80 relative">
+    <section id="localizacao" className="py-20 bg-[#14171A] border-b border-gray-800/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Local SEO & GEO Value */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
               <MapPin className="w-4 h-4 text-emerald-400" />
               <span>Sede Física & Otimização Local (GEO & GBP)</span>
             </div>
@@ -24,9 +24,9 @@ export const LocalPresenceGBP: React.FC = () => {
             </p>
 
             {/* Address and Contact Information Card */}
-            <div className="mt-8 bg-[#111827] border border-gray-800 rounded-2xl p-6 sm:p-7 space-y-4">
+            <div className="mt-8 bg-[#1B1E23] border border-[#2D3136] rounded-2xl p-6 sm:p-7 space-y-4">
               <div className="flex items-start gap-3 text-sm text-gray-300">
-                <MapPin className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-[#FA842D] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-white block">Endereço da Sede:</strong>
                   <span>{COMPANY_INFO.address.street}, {COMPANY_INFO.address.suite}</span>
@@ -51,7 +51,7 @@ export const LocalPresenceGBP: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3 text-sm text-gray-300 pt-3 border-t border-gray-800">
-                <Phone className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+                <Phone className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-white block">Canal Direto de Conversão:</strong>
                   <span>WhatsApp & Telefone: <strong>{COMPANY_INFO.phoneFormatted}</strong></span>
@@ -66,9 +66,9 @@ export const LocalPresenceGBP: React.FC = () => {
                 href={COMPANY_INFO.googleMapsQueryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-3 rounded-xl text-sm border border-slate-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white font-semibold px-5 py-3 rounded-xl text-sm border border-stone-700 transition-colors"
               >
-                <Navigation className="w-4 h-4 text-blue-400" />
+                <Navigation className="w-4 h-4 text-[#FA842D]" />
                 <span>Ver Rota no Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
               </a>
@@ -87,7 +87,7 @@ export const LocalPresenceGBP: React.FC = () => {
 
           {/* Right Column: Google Business Profile Preview Mockup */}
           <div className="lg:col-span-5">
-            <div className="bg-[#111827] border border-blue-500/30 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+            <div className="bg-[#1B1E23] border border-orange-500/30 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
               <div className="flex items-center justify-between pb-4 border-b border-gray-800">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -100,14 +100,14 @@ export const LocalPresenceGBP: React.FC = () => {
               {/* Mockup Card representing high ranking in Caxias do Sul */}
               <div className="mt-5 space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-extrabold font-display">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-[#FA842D] font-extrabold font-display">
                     BDS
                   </div>
                   <div>
                     <h4 className="text-base font-bold text-white leading-tight">
                       Bora Digital Strategy
                     </h4>
-                    <p className="text-xs text-blue-400 font-medium">
+                    <p className="text-xs text-[#FA842D] font-medium">
                       Criação de Sites • Google Ads • GBP
                     </p>
                     <div className="flex items-center gap-1 mt-1 text-xs text-amber-400 font-semibold">

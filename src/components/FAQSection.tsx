@@ -10,11 +10,11 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-[#0E131F] border-b border-gray-800/80">
+    <section id="faq" className="py-20 bg-[#15171A] border-b border-gray-800/80">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <HelpCircle className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
+            <HelpCircle className="w-4 h-4 text-[#FA842D]" />
             <span>Perguntas Frequentes & Respostas Diretas</span>
           </div>
 
@@ -34,20 +34,20 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-[#131B2B] border border-gray-800 rounded-2xl overflow-hidden transition-all duration-200"
+                className="bg-[#1B1E23] border border-[#2D3136] rounded-2xl overflow-hidden transition-all duration-200"
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none focus:bg-slate-800/40 cursor-pointer"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none focus:bg-stone-800/40 cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span className="text-base sm:text-lg font-bold text-white leading-snug">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-blue-400' : 'text-gray-400'
+                    className={`w-8 h-8 rounded-lg bg-stone-900 border border-stone-700 flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-[#FA842D]' : 'text-gray-400'
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
