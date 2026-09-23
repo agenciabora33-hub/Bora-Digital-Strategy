@@ -1,12 +1,13 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl, KEYWORD_MATRIX } from '../data/content';
 
 interface FooterProps {
   onNavigateToPlanos?: () => void;
+  onNavigateToKeywordPage?: (slug: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateToKeywordPage }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -91,22 +92,103 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos }) => {
             <h4 className="text-sm font-bold uppercase tracking-wider text-white">
               Especialidades & Proposta
             </h4>
-            <ul className="space-y-1.5 text-xs text-gray-400">
-              <li>• Site Profissional para Médicos e Dentistas</li>
-              <li>• Site para Advogados e Profissionais Liberais</li>
-              <li>• Campanhas de Anúncios no Google Ads (ROI)</li>
-              <li>• Cadastro e Otimização no Google Meu Negócio</li>
-              <li>• SEO Local e Otimização para IAs (GEO)</li>
+            <ul className="space-y-2 text-xs text-gray-400">
+              <li>
+                <a
+                  href="/aparecer-no-google"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('aparecer-no-google');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Como Aparecer no Google & IAs</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/anuncio-patrocinado-google"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('anuncio-patrocinado-google');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Anúncio Patrocinado no Google Ads</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/site-profissional"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('site-profissional');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Criação de Site Profissional</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/site-para-profissionais-liberais"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('site-para-profissionais-liberais');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Site para Profissionais Liberais</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/cadastro-google-meu-negocio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('cadastro-google-meu-negocio');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Cadastro no Google Meu Negócio</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
               {onNavigateToPlanos && (
                 <li className="pt-2">
-                  <button
-                    type="button"
-                    onClick={onNavigateToPlanos}
-                    className="inline-flex items-center gap-1.5 text-[#FA842D] hover:text-orange-300 font-bold transition-colors cursor-pointer text-xs"
+                  <a
+                    href="/planos"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigateToPlanos();
+                    }}
+                    className="inline-flex items-center gap-2 text-[#FA842D] hover:text-orange-300 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/30 px-3 py-2 rounded-xl font-bold transition-all text-xs w-full justify-between"
                   >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>Ver Página de Planos e Proposta</span>
-                  </button>
+                    <span className="flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Ver Página de Planos & Proposta</span>
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
                 </li>
               )}
             </ul>
@@ -115,17 +197,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos }) => {
 
         {/* Semantic Keyword Tags for SXO & Indexation */}
         <div className="mt-12 pt-8 border-t border-gray-800/80">
-          <p className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-3">
-            Termos e Especialidades Atendidas:
+          <p className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-3 flex items-center justify-between">
+            <span>Páginas & Especialidades Exclusivas (Clique para acessar a página dedicada):</span>
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2.5">
             {KEYWORD_MATRIX.map((item, idx) => (
               <span
                 key={idx}
-                className="text-xs bg-slate-900 border border-slate-800 text-gray-300 px-3 py-1 rounded-full"
-                title={item.context}
+                role="button"
+                tabIndex={0}
+                onClick={() => onNavigateToKeywordPage?.(item.slug)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.(item.slug);
+                  }
+                }}
+                className="group inline-flex items-center gap-1.5 text-xs bg-slate-900/90 hover:bg-orange-500/15 border border-slate-800 hover:border-orange-500/60 text-gray-300 hover:text-white px-3.5 py-1.5 rounded-full transition-all duration-150 cursor-pointer shadow-sm hover:shadow-orange-500/10 active:scale-95"
+                title={`${item.context} — Clique para abrir a página dedicada com dados completos e SEO.`}
               >
-                {item.keyword}
+                <span>{item.keyword}</span>
+                <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
               </span>
             ))}
           </div>

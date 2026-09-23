@@ -282,11 +282,11 @@ export const FAQS: FAQItem[] = [
 ];
 
 export const KEYWORD_MATRIX = [
-  { keyword: 'Aparecer no Google', context: 'Estratégia orgânica e patrocinada para ser encontrado pelo cliente ideal.' },
-  { keyword: 'Anúncio patrocinado no Google', context: 'Campanhas de Google Ads com alto índice de retorno e contatos diretos.' },
-  { keyword: 'Site profissional', context: 'Desenvolvimento ágil, responsivo e focado na melhor experiência do usuário.' },
-  { keyword: 'Site para profissionais liberais', context: 'Autoridade e agendamentos para médicos, advogados e consultores.' },
-  { keyword: 'Cadastro no Google Meu Negócio', context: 'Destaque no mapa de Caxias do Sul e raio de atuação regional.' }
+  { keyword: 'Aparecer no Google', slug: 'aparecer-no-google', context: 'Estratégia orgânica e patrocinada para ser encontrado pelo cliente ideal.' },
+  { keyword: 'Anúncio patrocinado no Google', slug: 'anuncio-patrocinado-google', context: 'Campanhas de Google Ads com alto índice de retorno e contatos diretos.' },
+  { keyword: 'Site profissional', slug: 'site-profissional', context: 'Desenvolvimento ágil, responsivo e focado na melhor experiência do usuário.' },
+  { keyword: 'Site para profissionais liberais', slug: 'site-para-profissionais-liberais', context: 'Autoridade e agendamentos para médicos, advogados e consultores.' },
+  { keyword: 'Cadastro no Google Meu Negócio', slug: 'cadastro-google-meu-negocio', context: 'Destaque no mapa de Caxias do Sul e raio de atuação regional.' }
 ];
 
 export const PRICING_PLANS: PricingPlan[] = [

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Smartphone, Zap, Bot, Users, ShieldCheck, TrendingUp } from 'lucide-react';
+import { TiltCard } from './3d/TiltCard';
 
 export const WhyChooseUs: React.FC = () => {
   const differentials = [
@@ -36,10 +37,10 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section id="diferenciais" className="py-20 bg-[#15171B] border-b border-gray-800/80">
+    <section id="diferenciais" className="py-20 bg-[#15171B]/90 backdrop-blur-sm border-b border-gray-800/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-950/50 border border-orange-500/40 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <Zap className="w-4 h-4 text-amber-400" />
             <span>Diferenciais Competitivos</span>
           </div>
@@ -55,22 +56,23 @@ export const WhyChooseUs: React.FC = () => {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {differentials.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#1B1E23] border border-[#2D3136] hover:border-orange-500/50 rounded-2xl p-6 sm:p-7 transition-all duration-200"
-            >
-              <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-5">
-                {item.icon}
+            <TiltCard key={idx} intensity={6} depth={15} className="h-full">
+              <div className="bg-[#1B1E23]/95 border border-[#2D3136] hover:border-orange-500/50 rounded-2xl p-6 sm:p-7 transition-all duration-200 h-full flex flex-col justify-between shadow-lg">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center mb-5">
+                    {item.icon}
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white mb-2 font-display">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-
-              <h3 className="text-lg font-bold text-white mb-2">
-                {item.title}
-              </h3>
-
-              <p className="text-sm text-gray-300 leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

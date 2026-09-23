@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calculator, CheckCircle, ArrowRight, MessageCircle, Sparkles, Building, Stethoscope, Scale, Briefcase, Store } from 'lucide-react';
 import { BUSINESS_SEGMENTS, buildWhatsAppUrl } from '../data/content';
+import { TiltCard } from './3d/TiltCard';
 
 export const PresenceSimulator: React.FC = () => {
   const [selectedSegmentId, setSelectedSegmentId] = useState<string>('medicos-saude');
@@ -69,11 +70,11 @@ Gostaria de receber a análise de viabilidade e um plano para gerar contatos no 
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-            Simulador de Potencial de Clientes & Estratégia Digital
+            Simulador de Potencial: Mais Clientes, Vendas & Agendamentos
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-gray-300">
-            Descubra qual a combinação ideal de <strong className="text-white">Site Profissional</strong>, <strong className="text-white">Google Ads</strong> e <strong className="text-white">Google Meu Negócio</strong> para o momento do seu negócio.
+            Com atendimento global e sede em Caxias do Sul, calculamos a melhor estratégia para o seu negócio local dominar o Google e gerar vendas diárias no WhatsApp.
           </p>
         </div>
 
@@ -160,54 +161,62 @@ Gostaria de receber a análise de viabilidade e um plano para gerar contatos no 
               </div>
             </div>
 
-            {/* Right Column: Dynamic Diagnosis & WhatsApp Action */}
-            <div className="lg:col-span-5 bg-gradient-to-b from-stone-900 to-[#141619] border border-orange-500/30 rounded-2xl p-6 sm:p-7 shadow-xl">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FA842D] mb-2">
-                <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Recomendação Estratégica Bora Digital</span>
-              </div>
+            {/* Right Column: 3D Dynamic Diagnosis & WhatsApp Action */}
+            <div className="lg:col-span-5">
+              <TiltCard intensity={8} depth={16} className="h-full">
+                <div className="glass-panel-3d border border-orange-500/30 rounded-3xl p-6 sm:p-7 shadow-xl flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FA842D] mb-2">
+                      <Sparkles className="w-4 h-4 text-amber-400" />
+                      <span>Recomendação Estratégica Bora Digital</span>
+                    </div>
 
-              <h4 className="text-xl font-bold text-white mb-2 font-display">
-                {activeSegment.name}
-              </h4>
+                    <h4 className="text-xl font-bold text-white mb-2 font-display">
+                      {activeSegment.name}
+                    </h4>
 
-              <div className="bg-orange-950/40 border border-orange-800/50 rounded-xl p-3 mb-4">
-                <p className="text-xs text-orange-200">
-                  <strong className="text-white">Demanda estimada:</strong> {activeSegment.averageSearchesLocal}
-                </p>
-              </div>
+                    <div className="bg-orange-950/40 border border-orange-800/50 rounded-xl p-3 mb-4">
+                      <p className="text-xs text-orange-200">
+                        <strong className="text-white">Demanda estimada:</strong> {activeSegment.averageSearchesLocal}
+                      </p>
+                    </div>
 
-              <p className="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
-                {activeSegment.description}
-              </p>
+                    <p className="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                      {activeSegment.description}
+                    </p>
 
-              <div className="space-y-2.5 mb-6 text-xs sm:text-sm">
-                <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
-                  <span className="text-gray-400 block text-[11px] uppercase font-bold">Solução Recomendada:</span>
-                  <span className="text-white font-semibold">{activeSegment.recommendedService}</span>
+                    <div className="space-y-2.5 mb-6 text-xs sm:text-sm">
+                      <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800">
+                        <span className="text-gray-400 block text-[11px] uppercase font-bold">Solução Recomendada:</span>
+                        <span className="text-white font-semibold">{activeSegment.recommendedService}</span>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-800">
+                        <span className="text-gray-400 block text-[11px] uppercase font-bold">Foco de Conversão:</span>
+                        <span className="text-emerald-400 font-semibold">{activeSegment.strategicFocus}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <a
+                      id="simulator-send-whatsapp"
+                      href={buildWhatsAppUrl(whatsappSimulatorMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:scale-98 text-slate-950 font-extrabold py-3.5 px-4 rounded-xl text-sm transition-all shadow-md hover:shadow-emerald-500/20"
+                    >
+                      <MessageCircle className="w-5 h-5 fill-slate-950 text-slate-950" />
+                      <span>Enviar Diagnóstico no WhatsApp</span>
+                      <ArrowRight className="w-4 h-4 text-slate-950" />
+                    </a>
+
+                    <p className="text-[11px] text-gray-400 text-center mt-3">
+                      Sem compromisso. Análise feita pelo estrategista em até 5 minutos.
+                    </p>
+                  </div>
                 </div>
-
-                <div className="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
-                  <span className="text-gray-400 block text-[11px] uppercase font-bold">Foco de Conversão:</span>
-                  <span className="text-emerald-400 font-semibold">{activeSegment.strategicFocus}</span>
-                </div>
-              </div>
-
-              <a
-                id="simulator-send-whatsapp"
-                href={buildWhatsAppUrl(whatsappSimulatorMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] active:scale-98 text-slate-950 font-extrabold py-3.5 px-4 rounded-xl text-sm transition-all shadow-md hover:shadow-emerald-500/20"
-              >
-                <MessageCircle className="w-5 h-5 fill-slate-950 text-slate-950" />
-                <span>Enviar Diagnóstico no WhatsApp</span>
-                <ArrowRight className="w-4 h-4 text-slate-950" />
-              </a>
-
-              <p className="text-[11px] text-gray-400 text-center mt-3">
-                Sem compromisso. Análise feita pelo estrategista em até 5 minutos.
-              </p>
+              </TiltCard>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Check, MessageCircle, Sparkles, ArrowRight, ShieldCheck, HelpCircle, Flame, ExternalLink, Copy, CheckCircle2 } from 'lucide-react';
 import { PRICING_PLANS, PRICING_RULES, buildWhatsAppUrl, COMPANY_INFO } from '../data/content';
+import { TiltCard } from './3d/TiltCard';
 
 interface PricingSectionProps {
   onOpenPlanosPage?: () => void;
@@ -43,21 +44,21 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
           </p>
         </div>
 
-        {/* Pricing Grid: Mobile stacked vertical, Desktop 3 comparative columns */}
+        {/* Pricing Grid: Mobile stacked vertical, Desktop 3 comparative columns with 3D Tilt */}
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto">
           {PRICING_PLANS.map((plan) => {
             const isHighlight = plan.isPopular;
 
             return (
-              <div
-                key={plan.id}
-                id={`card-${plan.id}`}
-                className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 ${
-                  isHighlight
-                    ? 'bg-gradient-to-b from-[#272B31] via-[#1E2227] to-[#16181B] border-2 border-[#FA842D] shadow-[0_0_35px_rgba(250,132,45,0.22)] lg:-translate-y-2 z-10'
-                    : 'bg-[#191C20] border border-[#2D3238] hover:border-[#3E454E] shadow-xl'
-                }`}
-              >
+              <TiltCard key={plan.id} intensity={isHighlight ? 8 : 5} depth={isHighlight ? 25 : 12} className="h-full">
+                <div
+                  id={`card-${plan.id}`}
+                  className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 h-full backdrop-blur-sm ${
+                    isHighlight
+                      ? 'bg-gradient-to-b from-[#272B31] via-[#1E2227] to-[#16181B] border-2 border-[#FA842D] shadow-[0_15px_45px_rgba(250,132,45,0.25)] lg:-translate-y-2 z-10'
+                      : 'bg-[#191C20]/95 border border-[#2D3238] hover:border-[#3E454E] shadow-xl'
+                  }`}
+                >
                 {/* Top Badge for OPÇÃO 2 */}
                 {isHighlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
@@ -168,8 +169,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                   </p>
                 </div>
               </div>
-            );
-          })}
+            </TiltCard>
+          );
+        })}
         </div>
 
         {/* 3. Observações e Regras de Negócio (Microcopy de Rodapé do Bloco) */}

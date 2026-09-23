@@ -10,6 +10,7 @@ import { AuthorityEEAT } from './components/AuthorityEEAT';
 import { ServicesSection } from './components/ServicesSection';
 import { PricingSection } from './components/PricingSection';
 import { PlanosPage } from './components/PlanosPage';
+import { ServiceKeywordPage } from './components/ServiceKeywordPage';
 import { PresenceSimulator } from './components/PresenceSimulator';
 import { LocalPresenceGBP } from './components/LocalPresenceGBP';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -17,16 +18,20 @@ import { Testimonials } from './components/Testimonials';
 import { FAQSection } from './components/FAQSection';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { Footer } from './components/Footer';
+import { Ambient3DGrid } from './components/3d/Ambient3DGrid';
 import { MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, PhoneCall } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl } from './data/content';
+import { SEO_PAGES } from './data/seoPages';
 
 export default function App() {
-  const checkIsPlanosRoute = () => {
-    if (typeof window === 'undefined') return false;
+  const detectInitialRoute = (): { view: 'home' | 'planos' | 'service'; slug?: string } => {
+    if (typeof window === 'undefined') return { view: 'home' };
     const path = window.location.pathname.toLowerCase();
     const hash = window.location.hash.toLowerCase();
     const search = window.location.search.toLowerCase();
-    return (
+
+    // Check Planos route
+    if (
       path.startsWith('/planos') ||
       path.startsWith('/precos') ||
       path.startsWith('/proposta') ||
@@ -35,20 +40,33 @@ export default function App() {
       hash.startsWith('#/proposta') ||
       search.includes('pagina=planos') ||
       search.includes('view=planos')
-    );
+    ) {
+      return { view: 'planos' };
+    }
+
+    // Check specific keyword pages
+    const knownSlugs = Object.keys(SEO_PAGES);
+    for (const slug of knownSlugs) {
+      if (
+        path.includes(slug) ||
+        hash.includes(slug) ||
+        search.includes(`servico=${slug}`) ||
+        search.includes(`pagina=${slug}`)
+      ) {
+        return { view: 'service', slug };
+      }
+    }
+
+    return { view: 'home' };
   };
 
-  const [currentView, setCurrentView] = useState<'home' | 'planos'>(() => {
-    return checkIsPlanosRoute() ? 'planos' : 'home';
+  const [routeState, setRouteState] = useState<{ view: 'home' | 'planos' | 'service'; slug?: string }>(() => {
+    return detectInitialRoute();
   });
 
   useEffect(() => {
     const handleLocationChange = () => {
-      if (checkIsPlanosRoute()) {
-        setCurrentView('planos');
-      } else {
-        setCurrentView('home');
-      }
+      setRouteState(detectInitialRoute());
     };
 
     window.addEventListener('popstate', handleLocationChange);
@@ -59,24 +77,31 @@ export default function App() {
     };
   }, []);
 
-  const navigateTo = (view: 'home' | 'planos') => {
-    setCurrentView(view);
+  const navigateTo = (view: 'home' | 'planos' | 'service', slug?: string) => {
+    setRouteState({ view, slug });
     if (typeof window !== 'undefined') {
-      const targetUrl = view === 'planos' ? '/planos' : '/';
+      let targetUrl = '/';
+      if (view === 'planos') {
+        targetUrl = '/planos';
+      } else if (view === 'service' && slug) {
+        targetUrl = `/${slug}`;
+      }
       window.history.pushState({}, '', targetUrl);
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Update document title for SEO & clarity
       if (view === 'planos') {
         document.title = 'Planos & Proposta Comercial | Bora Digital Strategy';
+      } else if (view === 'service' && slug && SEO_PAGES[slug]) {
+        document.title = SEO_PAGES[slug].seo.title;
       } else {
-        document.title = 'Bora Digital Strategy | Criação de Sites, Google Ads e GBP em Caxias do Sul';
+        document.title = 'Bora Digital Strategy | Atendimento Global • Sede em Caxias do Sul';
       }
     }
   };
 
   // Render standalone Planos & Proposta page
-  if (currentView === 'planos') {
+  if (routeState.view === 'planos') {
     return (
       <>
         <PlanosPage onBackToHome={() => navigateTo('home')} />
@@ -85,34 +110,53 @@ export default function App() {
     );
   }
 
+  // Render dedicated Service Keyword SEO page
+  if (routeState.view === 'service' && routeState.slug && SEO_PAGES[routeState.slug]) {
+    return (
+      <>
+        <ServiceKeywordPage
+          slug={routeState.slug}
+          onNavigate={(view, slug) => navigateTo(view as any, slug)}
+        />
+        <WhatsAppFloatingButton />
+      </>
+    );
+  }
+
   // Render full landing page
   return (
-    <div className="min-h-screen bg-[#121417] text-[#F3F4F6] selection:bg-[#FA842D] selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#121417] text-[#F3F4F6] selection:bg-[#FA842D] selection:text-white flex flex-col relative overflow-hidden">
+      {/* 3D Global Ambient Spatial Canvas */}
+      <Ambient3DGrid />
+
       {/* Top Fixed Navigation */}
-      <Navbar />
+      <Navbar
+        onNavigateToPlanos={() => navigateTo('planos')}
+        onNavigateToHome={() => navigateTo('home')}
+      />
 
       {/* Main Page Sections */}
       <main id="main-content" className="flex-grow">
         {/* 1. Hero Section (H1, Mobile-First, Target Keywords, Immediate WhatsApp CTA) */}
         <Hero />
 
-        {/* 2. Authority & EEAT (Google & IBM Certifications, UC Davis, Illinois, FSG) */}
+        {/* 2. Why Choose Us (SXO, GEO, Real Mobile-First Architecture) */}
+        <WhyChooseUs />
+
+        {/* 3. Authority & EEAT (Google & IBM Certifications, UC Davis, Illinois, FSG) */}
         <AuthorityEEAT />
 
-        {/* 3. Core Services (Sites Profissionais, Google Ads, Google Meu Negócio, SEO/GEO) */}
+        {/* 4. Core Services (Sites Profissionais, Google Ads, Google Meu Negócio, SEO/GEO) */}
         <ServicesSection />
 
-        {/* 4. Pricing Grid (Opção 1, Opção 2 Mais Vendida, Opção 3 Aceleração Máxima) */}
+        {/* 5. Pricing Grid (Opção 1, Opção 2 Mais Vendida, Opção 3 Aceleração Máxima) */}
         <PricingSection onOpenPlanosPage={() => navigateTo('planos')} />
 
-        {/* 5. Interactive Potential Simulator & Custom Diagnostic */}
+        {/* 6. Interactive Potential Simulator & Custom Diagnostic */}
         <PresenceSimulator />
 
-        {/* 6. Local Presence & Google Business Profile (Caxias do Sul - Bairro Exposição) */}
+        {/* 7. Local Presence & Google Business Profile (Caxias do Sul - Bairro Exposição) */}
         <LocalPresenceGBP />
-
-        {/* 7. Why Choose Us (SXO, GEO, Real Mobile-First Architecture) */}
-        <WhyChooseUs />
 
         {/* 8. Social Proof & Verified Testimonials */}
         <Testimonials />
@@ -178,10 +222,13 @@ export default function App() {
       </main>
 
       {/* Persistent Floating WhatsApp CTA */}
-      <WhatsAppFloatingButton />
+      <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
 
       {/* Footer */}
-      <Footer onNavigateToPlanos={() => navigateTo('planos')} />
+      <Footer
+        onNavigateToPlanos={() => navigateTo('planos')}
+        onNavigateToKeywordPage={(slug) => navigateTo('service', slug)}
+      />
     </div>
   );
 }

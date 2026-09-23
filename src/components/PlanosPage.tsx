@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { PRICING_PLANS, PRICING_RULES, COMPANY_INFO, buildWhatsAppUrl } from '../data/content';
 import { PricingPlan } from '../types';
+import { TiltCard } from './3d/TiltCard';
+import { Ambient3DGrid } from './3d/Ambient3DGrid';
 
 interface PlanosPageProps {
   onBackToHome?: () => void;
@@ -124,7 +126,10 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#121417] text-[#F3F4F6] selection:bg-[#FA842D] selection:text-white">
+    <div className="min-h-screen bg-[#121417] text-[#F3F4F6] selection:bg-[#FA842D] selection:text-white relative overflow-hidden">
+      {/* 3D Ambient Particle Grid */}
+      <Ambient3DGrid />
+
       {/* Top Proposal Navigation Header */}
       <header className="sticky top-0 z-40 bg-[#121417]/95 backdrop-blur-md border-b border-[#2A2E33] py-3.5 px-4 sm:px-6 lg:px-8 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
@@ -217,16 +222,16 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
             const isSelected = selectedPlanId === plan.id;
 
             return (
-              <div
-                key={plan.id}
-                id={`proposal-card-${plan.id}`}
-                onClick={() => setSelectedPlanId(plan.id)}
-                className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 cursor-pointer ${
-                  isHighlight
-                    ? 'bg-gradient-to-b from-[#272B31] via-[#1E2227] to-[#16181B] border-2 border-[#FA842D] shadow-[0_0_40px_rgba(250,132,45,0.22)] lg:-translate-y-2'
-                    : 'bg-[#181B1F] border border-[#2A2E33] hover:border-[#3E454E] shadow-xl'
-                } ${isSelected ? 'ring-2 ring-[#FA842D]' : ''}`}
-              >
+              <TiltCard key={plan.id} intensity={isHighlight ? 8 : 5} depth={isHighlight ? 25 : 12} className="h-full">
+                <div
+                  id={`proposal-card-${plan.id}`}
+                  onClick={() => setSelectedPlanId(plan.id)}
+                  className={`relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 cursor-pointer h-full backdrop-blur-sm ${
+                    isHighlight
+                      ? 'bg-gradient-to-b from-[#272B31] via-[#1E2227] to-[#16181B] border-2 border-[#FA842D] shadow-[0_15px_45px_rgba(250,132,45,0.25)] lg:-translate-y-2'
+                      : 'bg-[#181B1F]/95 border border-[#2A2E33] hover:border-[#3E454E] shadow-xl'
+                  } ${isSelected ? 'ring-2 ring-[#FA842D]' : ''}`}
+                >
                 {/* Highlight Badge */}
                 {isHighlight && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -337,8 +342,9 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
                   </p>
                 </div>
               </div>
-            );
-          })}
+            </TiltCard>
+          );
+        })}
         </div>
       </section>
 
