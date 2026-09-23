@@ -42,6 +42,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
           <p className="mt-4 text-base sm:text-lg text-gray-300 leading-relaxed">
             Escolha o nível de aceleração ideal para o momento da sua empresa. Da presença digital profissional à dominância total nas buscas e anúncios do Google.
           </p>
+
+          <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-amber-300/90 bg-amber-950/40 border border-amber-500/30 px-3.5 py-1.5 rounded-full font-medium">
+            <span>*</span>
+            <span>Os valores podem sofrer alterações conforme a demanda e especificidades de cada cliente.</span>
+          </p>
         </div>
 
         {/* Pricing Grid: Mobile stacked vertical, Desktop 3 comparative columns with 3D Tilt */}
@@ -59,7 +64,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                       : 'bg-[#191C20]/95 border border-[#2D3238] hover:border-[#3E454E] shadow-xl'
                   }`}
                 >
-                {/* Top Badge for OPÇÃO 2 */}
+                {/* Top Badge for OPÇÃO 3 (Mais Vendida) */}
                 {isHighlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                     <span className="inline-flex items-center gap-1.5 bg-[#25D366] text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-lg">

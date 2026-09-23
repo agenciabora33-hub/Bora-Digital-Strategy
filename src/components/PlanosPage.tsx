@@ -28,10 +28,10 @@ interface PlanosPageProps {
 
 export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
   const [copiedLink, setCopiedLink] = useState(false);
-  const [selectedPlanId, setSelectedPlanId] = useState<string>('opcao-2');
+  const [selectedPlanId, setSelectedPlanId] = useState<string>('opcao-3');
   const [clientCompanyName, setClientCompanyName] = useState<string>('');
 
-  const selectedPlan = PRICING_PLANS.find((p) => p.id === selectedPlanId) || PRICING_PLANS[1];
+  const selectedPlan = PRICING_PLANS.find((p) => p.id === selectedPlanId) || PRICING_PLANS[2];
 
   const getProposalUrl = () => {
     if (typeof window !== 'undefined') {
@@ -194,6 +194,11 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
             Analise os 3 formatos abaixo preparados pela <strong className="text-white">Bora Digital Strategy</strong> e escolha o nível de aceleração ideal para sua empresa dominar o Google e receber contatos diretos no WhatsApp.
           </p>
 
+          <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-amber-300/90 bg-amber-950/40 border border-amber-500/30 px-3.5 py-1.5 rounded-full font-medium">
+            <span>*</span>
+            <span>Os valores podem sofrer alterações conforme a demanda e especificidades de cada cliente.</span>
+          </p>
+
           {/* Quick Agency Share Helper Box */}
           <div className="mt-6 p-4 rounded-2xl bg-[#1C1F23] border border-orange-500/35 inline-flex flex-col sm:flex-row items-center gap-3 text-xs text-gray-300 max-w-xl mx-auto text-left shadow-lg">
             <div className="w-8 h-8 rounded-lg bg-orange-500/20 text-[#FA842D] flex items-center justify-center shrink-0">
@@ -216,7 +221,7 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
         </div>
       </section>
 
-      {/* Main Pricing Cards (1, 2 [Mais Vendida], 3) */}
+      {/* Main Pricing Cards (1, 2, 3 [Mais Vendida]) */}
       <section className="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {PRICING_PLANS.map((plan) => {
@@ -439,10 +444,10 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
               <tr className="border-b border-[#2A2E33] bg-[#141619]">
                 <th className="p-4 sm:p-5 font-bold text-gray-300">Recurso / Entregável</th>
                 <th className="p-4 sm:p-5 font-bold text-gray-300 text-center">Opção 1</th>
+                <th className="p-4 sm:p-5 font-bold text-gray-300 text-center">Opção 2</th>
                 <th className="p-4 sm:p-5 font-extrabold text-[#FA842D] text-center bg-orange-950/20 border-x border-orange-500/20">
-                  Opção 2 (Mais Vendida)
+                  Opção 3 (Mais Vendida)
                 </th>
-                <th className="p-4 sm:p-5 font-bold text-gray-300 text-center">Opção 3</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-800/80">
@@ -450,10 +455,10 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
                 <tr key={i} className="hover:bg-stone-800/30 transition-colors">
                   <td className="p-4 font-medium text-gray-200">{row.feature}</td>
                   <td className="p-4 text-center text-gray-300">{row.op1}</td>
+                  <td className="p-4 text-center text-gray-300">{row.op2}</td>
                   <td className="p-4 text-center font-semibold text-orange-300 bg-orange-950/20 border-x border-orange-500/20">
-                    {row.op2}
+                    {row.op3}
                   </td>
-                  <td className="p-4 text-center text-gray-300">{row.op3}</td>
                 </tr>
               ))}
               <tr className="bg-[#141619] font-bold">
@@ -461,17 +466,17 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
                 <td className="p-4 text-center text-white">
                   R$ 1.799
                   <br />
-                  <span className="text-xs text-gray-400 font-normal">+ R$ 190/mês</span>
-                </td>
-                <td className="p-4 text-center text-[#FA842D] bg-orange-950/30 border-x border-orange-500/20 font-extrabold text-base">
-                  R$ 1.999
-                  <br />
-                  <span className="text-xs text-orange-300 font-normal">+ R$ 499/mês</span>
+                  <span className="text-xs text-gray-400 font-normal">+ R$ 247/mês</span>
                 </td>
                 <td className="p-4 text-center text-white">
+                  R$ 1.999
+                  <br />
+                  <span className="text-xs text-gray-400 font-normal">+ R$ 697/mês</span>
+                </td>
+                <td className="p-4 text-center text-[#FA842D] bg-orange-950/30 border-x border-orange-500/20 font-extrabold text-base">
                   R$ 2.499
                   <br />
-                  <span className="text-xs text-gray-400 font-normal">+ R$ 699/mês</span>
+                  <span className="text-xs text-orange-300 font-normal">+ R$ 997/mês</span>
                 </td>
               </tr>
             </tbody>

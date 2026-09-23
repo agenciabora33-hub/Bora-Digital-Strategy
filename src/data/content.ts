@@ -297,7 +297,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     format: 'Site Institucional de Alta Conversão',
     objective: 'Ideal para estabelecer autoridade e canal direto via WhatsApp.',
     setupPrice: 'R$ 1.799,00',
-    monthlyPrice: 'R$ 190,00',
+    monthlyPrice: 'R$ 247,00',
     isPopular: false,
     features: [
       {
@@ -322,9 +322,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     format: 'Site + Google Meu Negócio (GMN)',
     objective: 'Focado em dominar as buscas locais da sua região e atrair clientes diariamente.',
     setupPrice: 'R$ 1.999,00',
-    monthlyPrice: 'R$ 499,00',
-    isPopular: true,
-    badge: 'MAIS VENDIDA',
+    monthlyPrice: 'R$ 697,00',
+    isPopular: false,
     features: [
       {
         text: 'Tudo da Opção 1',
@@ -343,7 +342,7 @@ export const PRICING_PLANS: PricingPlan[] = [
         detail: 'Respostas profissionais a avaliações, 1 postagem semanal + fotos/vídeos'
       }
     ],
-    whatsappMessage: 'Olá! Tenho interesse na OPÇÃO 2 • MAIS VENDIDA (Site + Google Meu Negócio). Gostaria de fechar essa proposta!'
+    whatsappMessage: 'Olá! Tenho interesse na OPÇÃO 2 (Site + Google Meu Negócio). Gostaria de fechar essa proposta!'
   },
   {
     id: 'opcao-3',
@@ -352,9 +351,9 @@ export const PRICING_PLANS: PricingPlan[] = [
     format: 'Site + GMN + Google Ads (Anúncios)',
     objective: 'Estratégia completa para colocar sua empresa no topo imediato do Google.',
     setupPrice: 'R$ 2.499,00',
-    monthlyPrice: 'R$ 699,00',
-    isPopular: false,
-    badge: 'MÁXIMO RESULTADO',
+    monthlyPrice: 'R$ 997,00',
+    isPopular: true,
+    badge: 'MAIS VENDIDA',
     features: [
       {
         text: 'Tudo da Opção 2 com Suporte Ilimitado',
@@ -369,12 +368,13 @@ export const PRICING_PLANS: PricingPlan[] = [
         detail: 'Criação e otimização de campanhas para primeiras posições'
       }
     ],
-    whatsappMessage: 'Olá! Tenho interesse na OPÇÃO 3 • ACELERAÇÃO MÁXIMA (Site + GMN + Google Ads). Gostaria de acelerar minhas vendas!'
+    whatsappMessage: 'Olá! Tenho interesse na OPÇÃO 3 • MAIS VENDIDA (Site + GMN + Google Ads). Gostaria de acelerar minhas vendas!'
   }
 ];
 
 export const PRICING_RULES = [
   'Os valores mensais garantem gestão ativa, hospedagem de alta performance, segurança e otimizações contínuas.',
+  'Os valores podem sofrer alterações conforme a demanda, porte e necessidades específicas do cliente.',
   'Na Opção 3 (Google Ads), o valor investido em mídia é definido pelo cliente e pago diretamente ao Google.',
   'Proposta válida por 15 dias.'
 ];

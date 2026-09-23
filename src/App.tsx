@@ -155,7 +155,7 @@ export default function App() {
         {/* 4. Core Services (Sites Profissionais, Google Ads, Google Meu Negócio, SEO/GEO) */}
         <ServicesSection />
 
-        {/* 5. Pricing Grid (Opção 1, Opção 2 Mais Vendida, Opção 3 Aceleração Máxima) */}
+        {/* 5. Pricing Grid (Opção 1, Opção 2, Opção 3 Mais Vendida) */}
         <PricingSection onOpenPlanosPage={() => navigateTo('planos')} />
 
         {/* 6. Interactive Potential Simulator & Custom Diagnostic */}
