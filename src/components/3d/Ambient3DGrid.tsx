@@ -4,6 +4,9 @@ export const Ambient3DGrid: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Only run ambient canvas on desktop (>=768px) to protect mobile battery and performance
+    if (window.innerWidth < 768) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -120,7 +123,7 @@ export const Ambient3DGrid: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10 opacity-60"
+      className="hidden md:block fixed inset-0 pointer-events-none -z-10 opacity-60"
       aria-hidden="true"
     />
   );

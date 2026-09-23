@@ -23,6 +23,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none)').matches)) return;
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -46,6 +47,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   }, [intensity, scale, depth, glare]);
 
   const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(hover: none)').matches)) return;
     setIsHovered(true);
   };
 

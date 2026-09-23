@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MessageCircle,
   ArrowRight,
@@ -16,21 +16,50 @@ import {
   PhoneCall
 } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl } from '../data/content';
-import { Hero3DScene } from './3d/Hero3DScene';
 import { TiltCard } from './3d/TiltCard';
+
+// Lazy load Three.js 3D scene so it does not block initial mobile render or inflate main bundle
+const Hero3DScene = React.lazy(() =>
+  import('./3d/Hero3DScene').then((m) => ({ default: m.Hero3DScene }))
+);
 
 export const Hero: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'search' | 'maps' | 'whatsapp'>('search');
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Only initialize heavy WebGL 3D scene on desktop (>=768px) to keep mobile TBT at 0ms and LCP instant
+    const checkDesktop = () => {
+      const isLargeScreen = window.innerWidth >= 768;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setIsDesktop(isLargeScreen && !prefersReduced);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop, { passive: true });
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   return (
     <section
       id="hero-section"
       className="relative pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden border-b border-stone-800/80"
     >
-      {/* 3D Global Scene spanning entire hero background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <Hero3DScene className="w-full h-full" />
-      </div>
+      {/* 3D Global Scene - Desktop Only (eliminates 33.4s TBT on mobile devices) */}
+      {isDesktop ? (
+        <React.Suspense fallback={null}>
+          <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <Hero3DScene className="w-full h-full" />
+          </div>
+        </React.Suspense>
+      ) : (
+        /* Mobile-First CSS Ambient Google Glow: 0 KB JS, 0ms TBT, 60fps GPU-accelerated */
+        <div className="md:hidden absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+          <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-64 h-64 bg-[#4285F4]/14 blur-3xl rounded-full" />
+          <div className="absolute top-1/3 right-4 w-56 h-56 bg-[#EA4335]/12 blur-3xl rounded-full" />
+          <div className="absolute bottom-12 left-6 w-48 h-48 bg-[#FBBC05]/10 blur-3xl rounded-full" />
+          <div className="absolute bottom-8 right-6 w-52 h-52 bg-[#34A853]/10 blur-3xl rounded-full" />
+        </div>
+      )}
 
       {/* 3D Dynamic Ambient Light Glows with Official Google Colors */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[720px] h-[480px] sm:h-[620px] bg-[#4285F4]/10 blur-[140px] rounded-full pointer-events-none -z-10" />

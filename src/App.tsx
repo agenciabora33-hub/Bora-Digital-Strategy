@@ -9,8 +9,6 @@ import { Hero } from './components/Hero';
 import { AuthorityEEAT } from './components/AuthorityEEAT';
 import { ServicesSection } from './components/ServicesSection';
 import { PricingSection } from './components/PricingSection';
-import { PlanosPage } from './components/PlanosPage';
-import { ServiceKeywordPage } from './components/ServiceKeywordPage';
 import { PresenceSimulator } from './components/PresenceSimulator';
 import { LocalPresenceGBP } from './components/LocalPresenceGBP';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -22,6 +20,14 @@ import { Ambient3DGrid } from './components/3d/Ambient3DGrid';
 import { MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, PhoneCall } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl } from './data/content';
 import { SEO_PAGES } from './data/seoPages';
+
+// Lazy load dedicated sub-pages so they do not burden the initial landing page bundle
+const PlanosPage = React.lazy(() =>
+  import('./components/PlanosPage').then((m) => ({ default: m.PlanosPage }))
+);
+const ServiceKeywordPage = React.lazy(() =>
+  import('./components/ServiceKeywordPage').then((m) => ({ default: m.ServiceKeywordPage }))
+);
 
 export default function App() {
   const detectInitialRoute = (): { view: 'home' | 'planos' | 'service'; slug?: string } => {
@@ -103,23 +109,23 @@ export default function App() {
   // Render standalone Planos & Proposta page
   if (routeState.view === 'planos') {
     return (
-      <>
+      <React.Suspense fallback={<div className="min-h-screen bg-[#121417] flex items-center justify-center text-stone-400">Carregando planos...</div>}>
         <PlanosPage onBackToHome={() => navigateTo('home')} />
-        <WhatsAppFloatingButton />
-      </>
+        <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+      </React.Suspense>
     );
   }
 
   // Render dedicated Service Keyword SEO page
   if (routeState.view === 'service' && routeState.slug && SEO_PAGES[routeState.slug]) {
     return (
-      <>
+      <React.Suspense fallback={<div className="min-h-screen bg-[#121417] flex items-center justify-center text-stone-400">Carregando serviço...</div>}>
         <ServiceKeywordPage
           slug={routeState.slug}
           onNavigate={(view, slug) => navigateTo(view as any, slug)}
         />
-        <WhatsAppFloatingButton />
-      </>
+        <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+      </React.Suspense>
     );
   }
 

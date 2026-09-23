@@ -21,8 +21,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/logo-transparent.png"
+                src="/logo.webp"
                 alt="Logo Bora Digital Strategy"
+                width="220"
+                height="48"
+                loading="lazy"
+                decoding="async"
                 className="h-10 sm:h-12 w-auto max-w-[220px] object-contain"
               />
             </div>

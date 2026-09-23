@@ -58,8 +58,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
             aria-label="Bora Digital Strategy - Início"
           >
             <img
-              src="/logo-transparent.png"
+              src="/logo.webp"
               alt="Bora Digital Strategy"
+              width="210"
+              height="40"
+              fetchPriority="high"
+              decoding="async"
               className="h-8 sm:h-10 w-auto max-w-[160px] sm:max-w-[210px] object-contain transition-transform duration-200 hover:scale-105"
             />
           </a>

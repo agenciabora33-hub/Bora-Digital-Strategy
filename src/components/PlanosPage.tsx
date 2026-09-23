@@ -148,8 +148,10 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
 
             <div className="flex items-center gap-3">
               <img
-                src="/logo-transparent.png"
+                src="/logo.webp"
                 alt="Bora Digital Strategy"
+                width="210"
+                height="40"
                 className="h-8 sm:h-10 w-auto max-w-[170px] sm:max-w-[210px] object-contain"
               />
               <span className="hidden sm:inline-block text-[11px] text-stone-400 font-medium border-l border-stone-700 pl-3">
