@@ -54,8 +54,14 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
     const updateGroupPosition = (w: number) => {
       if (w >= 1024) {
         rootGroup.position.set(2.4, 0.1, 0);
-      } else {
+        rootGroup.scale.set(1, 1, 1);
+      } else if (w >= 768) {
         rootGroup.position.set(0, -0.2, 0);
+        rootGroup.scale.set(0.9, 0.9, 0.9);
+      } else {
+        // Mobile screens (<768px): center, subtle depth, scale to 0.75
+        rootGroup.position.set(0, 0.2, -0.6);
+        rootGroup.scale.set(0.75, 0.75, 0.75);
       }
     };
     updateGroupPosition(width);
@@ -330,7 +336,19 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
       targetRotationX = y * 0.6;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const rect = container.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width - 0.5;
+        const y = (touch.clientY - rect.top) / rect.height - 0.5;
+        targetRotationY = x * 0.7;
+        targetRotationX = y * 0.5;
+      }
+    };
+
     window.addEventListener('mousemove', handlePointerMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     // RESIZE LISTENER
     const handleResize = () => {
@@ -445,6 +463,7 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handlePointerMove);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('resize', handleResize);
 
       if (container && renderer.domElement && container.contains(renderer.domElement)) {

@@ -1,6 +1,6 @@
 {
   "name": "Bora Digital Strategy",
-  "description": "Atendimento Global com sede em Caxias do Sul/RS. Especialistas em dar máxima visibilidade a negócios locais para gerar mais clientes, vendas, agendamentos e dinheiro.",
+  "description": "Atendimento Global com sede em Caxias do Sul/RS. Especialistas em dar máxima visibilidade a negócios locais para gerar mais clientes, vendas, agendamentos e faturamento.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

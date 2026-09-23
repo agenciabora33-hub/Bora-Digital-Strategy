@@ -4,9 +4,6 @@ export const Ambient3DGrid: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // Only run ambient canvas on desktop (>=768px) to protect mobile battery and performance
-    if (window.innerWidth < 768) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -17,6 +14,7 @@ export const Ambient3DGrid: React.FC = () => {
     let height = (canvas.height = window.innerHeight);
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
     // Handle resize
     const handleResize = () => {
@@ -26,16 +24,23 @@ export const Ambient3DGrid: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Track mouse
+    // Track mouse & touch
     let mouseX = width / 2;
     let mouseY = height / 2;
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+      }
+    };
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
-    // Generate 3D grid points
+    // Generate 3D grid points (optimized count on mobile)
     interface Point3D {
       x: number;
       y: number;
@@ -48,7 +53,8 @@ export const Ambient3DGrid: React.FC = () => {
     }
 
     const points: Point3D[] = [];
-    const count = 75; // lightweight
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 36 : 75; // optimized lightweight count for mobile
     for (let i = 0; i < count; i++) {
       const x = (Math.random() - 0.5) * width * 1.5;
       const y = (Math.random() - 0.5) * height * 1.5;
@@ -117,13 +123,14 @@ export const Ambient3DGrid: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="hidden md:block fixed inset-0 pointer-events-none -z-10 opacity-60"
+      className="fixed inset-0 pointer-events-none -z-10 opacity-50 sm:opacity-60"
       aria-hidden="true"
     />
   );

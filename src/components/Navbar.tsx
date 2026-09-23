@@ -71,19 +71,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
           {/* Menu Reduzido / Compact Nav (Desktop & Tablet) */}
           <nav
             aria-label="Navegação Principal"
-            className="hidden md:flex items-center gap-1 bg-[#181B20]/90 backdrop-blur-md border border-stone-800 px-3 py-1.5 rounded-full text-xs font-semibold text-stone-300 shadow-sm"
+            className="hidden md:flex items-center gap-1 bg-[#181B20]/90 backdrop-blur-md border border-stone-800 px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-sm"
           >
             <a
               href="#diferenciais"
               onClick={(e) => handleNavClick(e, 'diferenciais')}
-              className="px-2.5 py-1 rounded-full hover:text-white hover:bg-stone-800/80 transition-all"
+              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all"
             >
               Diferenciais
             </a>
             <a
               href="#servicos"
               onClick={(e) => handleNavClick(e, 'servicos')}
-              className="px-2.5 py-1 rounded-full hover:text-white hover:bg-stone-800/80 transition-all"
+              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all"
             >
               Serviços
             </a>
@@ -97,21 +97,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
                   handleNavClick(e, 'planos');
                 }
               }}
-              className="px-2.5 py-1 rounded-full text-[#FA842D] hover:text-orange-300 hover:bg-orange-500/10 transition-all flex items-center gap-1"
+              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all flex items-center gap-1"
             >
               <span>Planos</span>
             </a>
             <a
               href="#simulador"
               onClick={(e) => handleNavClick(e, 'simulador')}
-              className="px-2.5 py-1 rounded-full hover:text-white hover:bg-stone-800/80 transition-all"
+              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all"
             >
               Simulador
             </a>
             <a
               href="#faq"
               onClick={(e) => handleNavClick(e, 'faq')}
-              className="px-2.5 py-1 rounded-full hover:text-white hover:bg-stone-800/80 transition-all"
+              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all"
             >
               FAQ
             </a>
@@ -134,11 +134,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden inline-flex items-center justify-center p-1.5 rounded-lg text-stone-300 hover:text-white hover:bg-stone-800 border border-stone-800 focus:outline-none"
+              className="md:hidden inline-flex items-center justify-center p-1.5 rounded-lg text-white hover:bg-stone-800 border border-stone-800 focus:outline-none"
               aria-label="Abrir menu de navegação"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-[#FA842D]" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
             </button>
           </div>
         </div>
@@ -149,14 +149,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
             <a
               href="#diferenciais"
               onClick={(e) => handleNavClick(e, 'diferenciais')}
-              className="block px-3 py-2 rounded-xl text-stone-300 hover:text-white hover:bg-stone-800/70 font-medium transition-colors"
+              className="block px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-medium transition-colors"
             >
               • Diferenciais Competitivos
             </a>
             <a
               href="#servicos"
               onClick={(e) => handleNavClick(e, 'servicos')}
-              className="block px-3 py-2 rounded-xl text-stone-300 hover:text-white hover:bg-stone-800/70 font-medium transition-colors"
+              className="block px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-medium transition-colors"
             >
               • Serviços de Alta Conversão
             </a>
@@ -166,22 +166,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
                 setMobileMenuOpen(false);
                 onNavigateToPlanos?.();
               }}
-              className="w-full text-left flex items-center justify-between px-3 py-2 rounded-xl text-[#FA842D] hover:bg-orange-500/10 font-bold transition-colors"
+              className="w-full text-left flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-bold transition-colors"
             >
               <span>• Planos & Proposta Comercial</span>
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5 text-white" />
             </button>
             <a
               href="#simulador"
               onClick={(e) => handleNavClick(e, 'simulador')}
-              className="block px-3 py-2 rounded-xl text-stone-300 hover:text-white hover:bg-stone-800/70 font-medium transition-colors"
+              className="block px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-medium transition-colors"
             >
               • Simulador de Potencial
             </a>
             <a
               href="#faq"
               onClick={(e) => handleNavClick(e, 'faq')}
-              className="block px-3 py-2 rounded-xl text-stone-300 hover:text-white hover:bg-stone-800/70 font-medium transition-colors"
+              className="block px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-medium transition-colors"
             >
               • Perguntas Frequentes (FAQ)
             </a>
