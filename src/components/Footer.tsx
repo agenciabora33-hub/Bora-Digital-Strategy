@@ -39,6 +39,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Atendimento em Caxias do Sul, Brasil e Exterior</span>
             </div>
+
+            {/* Google Search Profile Badge */}
+            <div className="pt-2">
+              <a
+                href="https://profile.google.com/@example"
+                aria-label="Find us on Google Search"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-105 active:scale-95"
+              >
+                <img
+                  src="/path/to/google-search-badge.svg"
+                  alt="Google Search"
+                  width="170"
+                  height="40"
+                  className="h-10 w-auto"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Physical Address & Local Footprint */}
@@ -234,6 +253,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
           <p>
             © {new Date().getFullYear()} {COMPANY_INFO.fullName}. Todos os direitos reservados.
           </p>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="https://profile.google.com/@example"
+              aria-label="Find us on Google Search"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center transition-opacity hover:opacity-90"
+            >
+              <img
+                src="/path/to/google-search-badge.svg"
+                alt="Google Search"
+                width="150"
+                height="36"
+                className="h-8 w-auto"
+              />
+            </a>
+          </div>
 
           <button
             type="button"

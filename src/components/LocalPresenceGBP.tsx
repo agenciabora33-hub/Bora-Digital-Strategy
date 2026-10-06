@@ -83,6 +83,26 @@ export const LocalPresenceGBP: React.FC = () => {
                 <span>Falar com o Estrategista</span>
               </a>
             </div>
+
+            {/* Google Search Profile Badge */}
+            <div className="mt-5 pt-5 border-t border-gray-800/80 flex flex-wrap items-center gap-3">
+              <span className="text-xs text-gray-400 font-medium">Perfil verificado no Google:</span>
+              <a
+                href="https://profile.google.com/@example"
+                aria-label="Find us on Google Search"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center transition-transform hover:scale-105 active:scale-95"
+              >
+                <img
+                  src="/path/to/google-search-badge.svg"
+                  alt="Google Search"
+                  width="170"
+                  height="40"
+                  className="h-9 w-auto"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Right Column: Google Business Profile Preview Mockup */}
