@@ -282,11 +282,11 @@ export const FAQS: FAQItem[] = [
 ];
 
 export const KEYWORD_MATRIX = [
-  { keyword: 'Aparecer no Google', slug: 'aparecer-no-google', context: 'Estratégia orgânica e patrocinada para ser encontrado pelo cliente ideal.' },
-  { keyword: 'Anúncio patrocinado no Google', slug: 'anuncio-patrocinado-google', context: 'Campanhas de Google Ads com alto índice de retorno e contatos diretos.' },
-  { keyword: 'Site profissional', slug: 'site-profissional', context: 'Desenvolvimento ágil, responsivo e focado na melhor experiência do usuário.' },
-  { keyword: 'Site para profissionais liberais', slug: 'site-para-profissionais-liberais', context: 'Autoridade e agendamentos para médicos, advogados e consultores.' },
-  { keyword: 'Cadastro no Google Meu Negócio', slug: 'cadastro-google-meu-negocio', context: 'Destaque no mapa de Caxias do Sul e raio de atuação regional.' }
+  { keyword: 'Criação de Sites Profissionais', slug: 'criacao-de-sites', context: 'Sites mobile-first ultra-rápidos (< 0.4s) com conversão direta para o WhatsApp.' },
+  { keyword: 'Google Meu Negócio & Maps', slug: 'google-meu-negocio', context: 'Destaque no Top 3 do mapa local em Caxias do Sul e região para atrair ligações e rotas.' },
+  { keyword: 'Anúncios no Google Ads', slug: 'anuncio-patrocinado-google', context: 'Campanhas no Google Ads de alta conversão, lances inteligentes e negativação diária.' },
+  { keyword: 'SEO, AEO & SXO (IAs)', slug: 'seo-aeo-sxo', context: 'Posicionamento orgânico no Google, Bing e em respostas de IA generativa (Gemini, ChatGPT).' },
+  { keyword: 'Site para Profissionais Liberais', slug: 'site-para-profissionais-liberais', context: 'Autoridade e agendamento de consultas para médicos, advogados, dentistas e consultores.' }
 ];
 
 export const PRICING_PLANS: PricingPlan[] = [

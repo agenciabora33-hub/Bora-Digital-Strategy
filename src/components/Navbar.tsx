@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Menu, X, FileText } from 'lucide-react';
+import { MessageCircle, Menu, X, FileText, ChevronDown, Sparkles } from 'lucide-react';
 import { buildWhatsAppUrl } from '../data/content';
 
 interface NavbarProps {
   onNavigateToPlanos?: () => void;
   onNavigateToHome?: () => void;
+  onNavigateToService?: (slug: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateToHome }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateToHome, onNavigateToService }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
 
     if (window.location.pathname !== '/' && window.location.pathname !== '') {
       window.location.href = `/#${targetId}`;
@@ -31,6 +34,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleServiceClick = (slug: string) => {
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    if (onNavigateToService) {
+      onNavigateToService(slug);
     }
   };
 
@@ -71,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
           {/* Menu Reduzido / Compact Nav (Desktop & Tablet) */}
           <nav
             aria-label="Navegação Principal"
-            className="hidden md:flex items-center gap-1 bg-[#181B20]/90 backdrop-blur-md border border-stone-800 px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-sm"
+            className="hidden md:flex items-center gap-1 bg-[#181B20]/90 backdrop-blur-md border border-stone-800 px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-sm relative"
           >
             <a
               href="#diferenciais"
@@ -80,13 +91,68 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
             >
               Diferenciais
             </a>
-            <a
-              href="#servicos"
-              onClick={(e) => handleNavClick(e, 'servicos')}
-              className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all"
+
+            {/* Services with Hover/Click Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setServicesDropdownOpen(true)}
+              onMouseLeave={() => setServicesDropdownOpen(false)}
             >
-              Serviços
-            </a>
+              <button
+                type="button"
+                onClick={(e) => handleNavClick(e as any, 'servicos')}
+                className="px-2.5 py-1 rounded-full text-white hover:bg-stone-800/80 transition-all flex items-center gap-1 cursor-pointer"
+              >
+                <span>Serviços</span>
+                <ChevronDown className={`w-3 h-3 text-[#FA842D] transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {servicesDropdownOpen && (
+                <div className="absolute top-full left-0 mt-1 w-64 bg-[#181B20] border border-stone-800 rounded-2xl p-2 shadow-2xl space-y-1 animate-fadeIn text-left z-50">
+                  <button
+                    type="button"
+                    onClick={() => handleServiceClick('criacao-de-sites')}
+                    className="w-full text-left px-3 py-2 rounded-xl text-stone-200 hover:text-white hover:bg-stone-800/80 transition-colors block text-xs"
+                  >
+                    <span className="font-bold block text-white">Criação de Sites</span>
+                    <span className="text-[11px] text-stone-400">Mobile-First & Conversão no WhatsApp</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleServiceClick('google-meu-negocio')}
+                    className="w-full text-left px-3 py-2 rounded-xl text-stone-200 hover:text-white hover:bg-stone-800/80 transition-colors block text-xs"
+                  >
+                    <span className="font-bold block text-white">Google Meu Negócio</span>
+                    <span className="text-[11px] text-stone-400">Top 3 no Google Maps Local</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleServiceClick('anuncio-patrocinado-google')}
+                    className="w-full text-left px-3 py-2 rounded-xl text-stone-200 hover:text-white hover:bg-stone-800/80 transition-colors block text-xs"
+                  >
+                    <span className="font-bold block text-white">Anúncios no Google Ads</span>
+                    <span className="text-[11px] text-stone-400">Topo imediato com alto retorno</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleServiceClick('seo-aeo-sxo')}
+                    className="w-full text-left px-3 py-2 rounded-xl text-stone-200 hover:text-white hover:bg-stone-800/80 transition-colors block text-xs"
+                  >
+                    <span className="font-bold block text-white">SEO, AEO & SXO</span>
+                    <span className="text-[11px] text-stone-400">Google orgânico & Respostas de IA</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleServiceClick('site-para-profissionais-liberais')}
+                    className="w-full text-left px-3 py-2 rounded-xl text-stone-200 hover:text-white hover:bg-stone-800/80 transition-colors block text-xs border-t border-stone-800/60 pt-2"
+                  >
+                    <span className="font-bold block text-white">Profissionais Liberais</span>
+                    <span className="text-[11px] text-stone-400">Médicos, Advogados & Consultores</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
             <a
               href="#planos"
               onClick={(e) => {
@@ -143,7 +209,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu (Reduzido) */}
+        {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-2 pt-2 pb-3 border-t border-stone-800/80 bg-[#15171B]/95 backdrop-blur-md rounded-2xl px-3 shadow-xl space-y-1 text-xs">
             <a
@@ -153,13 +219,48 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
             >
               • Diferenciais Competitivos
             </a>
-            <a
-              href="#servicos"
-              onClick={(e) => handleNavClick(e, 'servicos')}
-              className="block px-3 py-2 rounded-xl text-white hover:bg-stone-800/70 font-medium transition-colors"
-            >
-              • Serviços de Alta Conversão
-            </a>
+            
+            <div className="py-1 px-3 border-y border-stone-800/60 my-1 space-y-1">
+              <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider block mb-1">
+                Páginas Dedicadas de Serviços:
+              </span>
+              <button
+                type="button"
+                onClick={() => handleServiceClick('criacao-de-sites')}
+                className="w-full text-left block py-1.5 text-stone-300 hover:text-white"
+              >
+                → Criação de Sites Profissionais
+              </button>
+              <button
+                type="button"
+                onClick={() => handleServiceClick('google-meu-negocio')}
+                className="w-full text-left block py-1.5 text-stone-300 hover:text-white"
+              >
+                → Google Meu Negócio (Google Maps)
+              </button>
+              <button
+                type="button"
+                onClick={() => handleServiceClick('anuncio-patrocinado-google')}
+                className="w-full text-left block py-1.5 text-stone-300 hover:text-white"
+              >
+                → Anúncios no Google Ads (Tráfego Pago)
+              </button>
+              <button
+                type="button"
+                onClick={() => handleServiceClick('seo-aeo-sxo')}
+                className="w-full text-left block py-1.5 text-stone-300 hover:text-white"
+              >
+                → SEO, AEO & SXO (Respostas de IA)
+              </button>
+              <button
+                type="button"
+                onClick={() => handleServiceClick('site-para-profissionais-liberais')}
+                className="w-full text-left block py-1.5 text-stone-300 hover:text-white"
+              >
+                → Sites para Profissionais Liberais
+              </button>
+            </div>
+
             <button
               type="button"
               onClick={() => {
@@ -191,4 +292,3 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateToPlanos, onNavigateTo
     </header>
   );
 };
-

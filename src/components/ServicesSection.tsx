@@ -1,9 +1,13 @@
 import React from 'react';
-import { Globe, Target, MapPinned, Zap, ArrowRight, CheckCircle2, MessageCircle, Smartphone } from 'lucide-react';
+import { Globe, Target, MapPinned, Zap, ArrowRight, CheckCircle2, MessageCircle, Smartphone, ExternalLink } from 'lucide-react';
 import { SERVICES, buildWhatsAppUrl } from '../data/content';
 import { TiltCard } from './3d/TiltCard';
 
-export const ServicesSection: React.FC = () => {
+interface ServicesSectionProps {
+  onNavigateToService?: (slug: string) => void;
+}
+
+export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToService }) => {
   const getIcon = (id: string) => {
     switch (id) {
       case 'site-profissional':
@@ -14,6 +18,20 @@ export const ServicesSection: React.FC = () => {
         return <MapPinned className="w-6 h-6 text-amber-400" />;
       default:
         return <Zap className="w-6 h-6 text-orange-400" />;
+    }
+  };
+
+  const getServiceSlug = (id: string): string => {
+    switch (id) {
+      case 'site-profissional':
+        return 'criacao-de-sites';
+      case 'google-ads':
+        return 'anuncio-patrocinado-google';
+      case 'google-meu-negocio':
+        return 'google-meu-negocio';
+      case 'seo-geo-sxo':
+      default:
+        return 'seo-aeo-sxo';
     }
   };
 
@@ -38,72 +56,91 @@ export const ServicesSection: React.FC = () => {
 
         {/* 3D Services Grid */}
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {SERVICES.map((service) => (
-            <TiltCard key={service.id} intensity={6} depth={15} className="h-full">
-              <div className="bg-[#191C20]/90 rounded-3xl p-7 sm:p-8 border border-[#2D3238] hover:border-orange-500/40 transition-all duration-300 shadow-xl flex flex-col justify-between h-full backdrop-blur-sm">
-                <div>
-                  {/* Header with Icon and Badge */}
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center shadow-inner">
-                      {getIcon(service.id)}
-                    </div>
-                    <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-stone-800/90 text-orange-300 border border-stone-700">
-                      {service.badge}
-                    </span>
-                  </div>
-
-                  {/* Sub-Keyword Headline & Main Title */}
-                  <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wide mb-1">
-                    {service.headlineKeyword}
-                  </p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-stone-300 leading-relaxed mb-4">
-                    {service.shortDescription}
-                  </p>
-
-                  {/* Target Audience */}
-                  <div className="bg-stone-900/80 rounded-xl p-3.5 border border-stone-800 mb-5 text-xs sm:text-sm text-stone-300">
-                    <strong className="text-white block mb-1">Público recomendado:</strong>
-                    {service.targetAudience}
-                  </div>
-
-                  {/* Deliverables Checklist */}
-                  <div className="space-y-2.5 mb-6">
-                    <p className="text-xs uppercase tracking-wider text-stone-400 font-bold">
-                      O que está incluso no projeto:
-                    </p>
-                    {service.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-300">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{item}</span>
+          {SERVICES.map((service) => {
+            const serviceSlug = getServiceSlug(service.id);
+            return (
+              <TiltCard key={service.id} intensity={6} depth={15} className="h-full">
+                <div className="bg-[#191C20]/90 rounded-3xl p-7 sm:p-8 border border-[#2D3238] hover:border-orange-500/40 transition-all duration-300 shadow-xl flex flex-col justify-between h-full backdrop-blur-sm">
+                  <div>
+                    {/* Header with Icon and Badge */}
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center shadow-inner">
+                        {getIcon(service.id)}
                       </div>
-                    ))}
+                      <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-stone-800/90 text-orange-300 border border-stone-700">
+                        {service.badge}
+                      </span>
+                    </div>
+
+                    {/* Sub-Keyword Headline & Main Title */}
+                    <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wide mb-1">
+                      {service.headlineKeyword}
+                    </p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-sm sm:text-base text-stone-300 leading-relaxed mb-4">
+                      {service.shortDescription}
+                    </p>
+
+                    {/* Target Audience */}
+                    <div className="bg-stone-900/80 rounded-xl p-3.5 border border-stone-800 mb-5 text-xs sm:text-sm text-stone-300">
+                      <strong className="text-white block mb-1">Público recomendado:</strong>
+                      {service.targetAudience}
+                    </div>
+
+                    {/* Deliverables Checklist */}
+                    <div className="space-y-2.5 mb-6">
+                      <p className="text-xs uppercase tracking-wider text-stone-400 font-bold">
+                        O que está incluso no projeto:
+                      </p>
+                      {service.deliverables.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-300">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Conversion Objective */}
+                    <div className="text-xs text-orange-200 bg-orange-950/30 border border-orange-800/40 p-3 rounded-lg mb-6">
+                      <strong className="text-white">Objetivo final: </strong>
+                      {service.conversionFocus}
+                    </div>
                   </div>
 
-                  {/* Conversion Objective */}
-                  <div className="text-xs text-orange-200 bg-orange-950/30 border border-orange-800/40 p-3 rounded-lg mb-6">
-                    <strong className="text-white">Objetivo final: </strong>
-                    {service.conversionFocus}
+                  {/* Dual Action Buttons: Dedicated Page Link + WhatsApp CTA */}
+                  <div className="space-y-2.5 pt-2">
+                    <a
+                      href={`/${serviceSlug}`}
+                      onClick={(e) => {
+                        if (onNavigateToService) {
+                          e.preventDefault();
+                          onNavigateToService(serviceSlug);
+                        }
+                      }}
+                      className="w-full flex items-center justify-center gap-2 bg-[#1E2228] hover:bg-[#252A32] border border-stone-700 hover:border-orange-500/60 text-white font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-all shadow-sm"
+                    >
+                      <span>Ver Página Completa & Detalhes do Serviço</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#FA842D]" />
+                    </a>
+
+                    <a
+                      href={buildWhatsAppUrl(service.whatsappPresetMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba59] active:scale-98 text-slate-950 font-bold py-3.5 px-5 rounded-xl text-sm sm:text-base transition-all shadow-md hover:shadow-emerald-500/20"
+                    >
+                      <MessageCircle className="w-5 h-5 fill-slate-950 text-slate-950" />
+                      <span>Pedir Orçamento Deste Serviço</span>
+                      <ArrowRight className="w-4 h-4 text-slate-950" />
+                    </a>
                   </div>
                 </div>
-
-                {/* Action Button to WhatsApp */}
-                <a
-                  href={buildWhatsAppUrl(service.whatsappPresetMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba59] active:scale-98 text-slate-950 font-bold py-3.5 px-5 rounded-xl text-sm sm:text-base transition-all shadow-md hover:shadow-emerald-500/20"
-                >
-                  <MessageCircle className="w-5 h-5 fill-slate-950 text-slate-950" />
-                  <span>Pedir Orçamento Deste Serviço</span>
-                  <ArrowRight className="w-4 h-4 text-slate-950" />
-                </a>
-              </div>
-            </TiltCard>
-          ))}
+              </TiltCard>
+            );
+          })}
         </div>
 
         {/* Banner with combo package */}

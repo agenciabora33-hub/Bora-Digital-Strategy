@@ -139,6 +139,7 @@ export default function App() {
       <Navbar
         onNavigateToPlanos={() => navigateTo('planos')}
         onNavigateToHome={() => navigateTo('home')}
+        onNavigateToService={(slug) => navigateTo('service', slug)}
       />
 
       {/* Main Page Sections */}
@@ -153,7 +154,7 @@ export default function App() {
         <AuthorityEEAT />
 
         {/* 4. Core Services (Sites Profissionais, Google Ads, Google Meu Negócio, SEO/GEO) */}
-        <ServicesSection />
+        <ServicesSection onNavigateToService={(slug) => navigateTo('service', slug)} />
 
         {/* 5. Pricing Grid (Opção 1, Opção 2, Opção 3 Mais Vendida) */}
         <PricingSection onOpenPlanosPage={() => navigateTo('planos')} />

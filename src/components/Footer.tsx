@@ -118,16 +118,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
             <ul className="space-y-2 text-xs text-gray-400">
               <li>
                 <a
-                  href="/aparecer-no-google"
+                  href="/criacao-de-sites"
                   onClick={(e) => {
                     e.preventDefault();
-                    onNavigateToKeywordPage?.('aparecer-no-google');
+                    onNavigateToKeywordPage?.('criacao-de-sites');
                   }}
                   className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
                 >
                   <span className="flex items-center gap-1.5">
                     <span className="text-[#FA842D] font-bold">•</span>
-                    <span>Como Aparecer no Google & IAs</span>
+                    <span>Criação de Sites Profissionais</span>
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/google-meu-negocio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateToKeywordPage?.('google-meu-negocio');
+                  }}
+                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FA842D] font-bold">•</span>
+                    <span>Google Meu Negócio & Maps</span>
                   </span>
                   <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
                 </a>
@@ -150,16 +166,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
               </li>
               <li>
                 <a
-                  href="/site-profissional"
+                  href="/seo-aeo-sxo"
                   onClick={(e) => {
                     e.preventDefault();
-                    onNavigateToKeywordPage?.('site-profissional');
+                    onNavigateToKeywordPage?.('seo-aeo-sxo');
                   }}
                   className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
                 >
                   <span className="flex items-center gap-1.5">
                     <span className="text-[#FA842D] font-bold">•</span>
-                    <span>Criação de Site Profissional</span>
+                    <span>SEO, AEO & SXO (Respostas de IA)</span>
                   </span>
                   <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
                 </a>
@@ -176,22 +192,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
                   <span className="flex items-center gap-1.5">
                     <span className="text-[#FA842D] font-bold">•</span>
                     <span>Site para Profissionais Liberais</span>
-                  </span>
-                  <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/cadastro-google-meu-negocio"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigateToKeywordPage?.('cadastro-google-meu-negocio');
-                  }}
-                  className="group flex items-center justify-between text-gray-300 hover:text-white transition-colors py-1 px-2 -mx-2 rounded-lg hover:bg-stone-800/60"
-                >
-                  <span className="flex items-center gap-1.5">
-                    <span className="text-[#FA842D] font-bold">•</span>
-                    <span>Cadastro no Google Meu Negócio</span>
                   </span>
                   <ArrowRight className="w-3 h-3 text-[#FA842D] opacity-0 group-hover:opacity-100 transition-all -translate-x-1 group-hover:translate-x-0" />
                 </a>
