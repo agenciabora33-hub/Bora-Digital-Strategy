@@ -31,13 +31,49 @@ const PlanosPage = React.lazy(() =>
 const ServiceKeywordPage = React.lazy(() =>
   import('./components/ServiceKeywordPage').then((m) => ({ default: m.ServiceKeywordPage }))
 );
+const TermosDeUsoPage = React.lazy(() =>
+  import('./components/TermosDeUsoPage').then((m) => ({ default: m.TermosDeUsoPage }))
+);
+const PoliticaPrivacidadePage = React.lazy(() =>
+  import('./components/PoliticaPrivacidadePage').then((m) => ({ default: m.PoliticaPrivacidadePage }))
+);
+
+export type AppView = 'home' | 'planos' | 'service' | 'termos' | 'privacidade';
 
 export default function App() {
-  const detectInitialRoute = (): { view: 'home' | 'planos' | 'service'; slug?: string } => {
+  const detectInitialRoute = (): { view: AppView; slug?: string } => {
     if (typeof window === 'undefined') return { view: 'home' };
     const path = window.location.pathname.toLowerCase();
     const hash = window.location.hash.toLowerCase();
     const search = window.location.search.toLowerCase();
+
+    // Check Termos de Uso route
+    if (
+      path.startsWith('/termos-de-uso') ||
+      path.startsWith('/termos') ||
+      hash.startsWith('#/termos-de-uso') ||
+      hash.startsWith('#/termos') ||
+      search.includes('pagina=termos-de-uso') ||
+      search.includes('pagina=termos') ||
+      search.includes('view=termos')
+    ) {
+      return { view: 'termos' };
+    }
+
+    // Check Políticas de Privacidade route
+    if (
+      path.startsWith('/politicas-de-privacidade') ||
+      path.startsWith('/politica-de-privacidade') ||
+      path.startsWith('/privacidade') ||
+      hash.startsWith('#/politicas-de-privacidade') ||
+      hash.startsWith('#/politica-de-privacidade') ||
+      hash.startsWith('#/privacidade') ||
+      search.includes('pagina=politicas-de-privacidade') ||
+      search.includes('pagina=privacidade') ||
+      search.includes('view=privacidade')
+    ) {
+      return { view: 'privacidade' };
+    }
 
     // Check Planos route
     if (
@@ -69,7 +105,7 @@ export default function App() {
     return { view: 'home' };
   };
 
-  const [routeState, setRouteState] = useState<{ view: 'home' | 'planos' | 'service'; slug?: string }>(() => {
+  const [routeState, setRouteState] = useState<{ view: AppView; slug?: string }>(() => {
     return detectInitialRoute();
   });
   const [isIndexNowOpen, setIsIndexNowOpen] = useState(false);
@@ -96,6 +132,12 @@ export default function App() {
     if (routeState.view === 'planos') {
       currentPath = '/planos';
       currentTitle = 'Planos & Proposta Comercial | Bora Digital Strategy';
+    } else if (routeState.view === 'termos') {
+      currentPath = '/termos-de-uso';
+      currentTitle = 'Termos de Uso & Condições Gerais | Bora Digital Strategy';
+    } else if (routeState.view === 'privacidade') {
+      currentPath = '/politicas-de-privacidade';
+      currentTitle = 'Política de Privacidade & Proteção de Dados (LGPD) | Bora Digital Strategy';
     } else if (routeState.view === 'service' && routeState.slug) {
       currentPath = `/${routeState.slug}`;
       currentTitle = SEO_PAGES[routeState.slug]?.seo.title || currentTitle;
@@ -103,12 +145,16 @@ export default function App() {
     trackPageView(currentPath, currentTitle);
   }, [routeState]);
 
-  const navigateTo = (view: 'home' | 'planos' | 'service', slug?: string) => {
+  const navigateTo = (view: AppView, slug?: string) => {
     setRouteState({ view, slug });
     if (typeof window !== 'undefined') {
       let targetUrl = '/';
       if (view === 'planos') {
         targetUrl = '/planos';
+      } else if (view === 'termos') {
+        targetUrl = '/termos-de-uso';
+      } else if (view === 'privacidade') {
+        targetUrl = '/politicas-de-privacidade';
       } else if (view === 'service' && slug) {
         targetUrl = `/${slug}`;
       }
@@ -118,6 +164,10 @@ export default function App() {
       // Update document title for SEO & clarity
       if (view === 'planos') {
         document.title = 'Planos & Proposta Comercial | Bora Digital Strategy';
+      } else if (view === 'termos') {
+        document.title = 'Termos de Uso & Condições Gerais | Bora Digital Strategy';
+      } else if (view === 'privacidade') {
+        document.title = 'Política de Privacidade & Proteção de Dados (LGPD) | Bora Digital Strategy';
       } else if (view === 'service' && slug && SEO_PAGES[slug]) {
         document.title = SEO_PAGES[slug].seo.title;
       } else {
@@ -125,6 +175,34 @@ export default function App() {
       }
     }
   };
+
+  // Render standalone Termos de Uso page
+  if (routeState.view === 'termos') {
+    return (
+      <React.Suspense fallback={<div className="min-h-screen bg-[#121417] flex items-center justify-center text-stone-400">Carregando termos de uso...</div>}>
+        <TermosDeUsoPage
+          onBackToHome={() => navigateTo('home')}
+          onNavigateToPrivacidade={() => navigateTo('privacidade')}
+        />
+        <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+        <IndexNowModal isOpen={isIndexNowOpen} onClose={() => setIsIndexNowOpen(false)} />
+      </React.Suspense>
+    );
+  }
+
+  // Render standalone Políticas de Privacidade page
+  if (routeState.view === 'privacidade') {
+    return (
+      <React.Suspense fallback={<div className="min-h-screen bg-[#121417] flex items-center justify-center text-stone-400">Carregando política de privacidade...</div>}>
+        <PoliticaPrivacidadePage
+          onBackToHome={() => navigateTo('home')}
+          onNavigateToTermos={() => navigateTo('termos')}
+        />
+        <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+        <IndexNowModal isOpen={isIndexNowOpen} onClose={() => setIsIndexNowOpen(false)} />
+      </React.Suspense>
+    );
+  }
 
   // Render standalone Planos & Proposta page
   if (routeState.view === 'planos') {
@@ -215,7 +293,7 @@ export default function App() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba59] active:scale-98 text-slate-950 font-extrabold text-base sm:text-lg px-8 py-4 rounded-xl shadow-xl hover:shadow-emerald-500/25 transition-all cursor-pointer animate-whatsapp-pulse"
               >
                 <MessageCircle className="w-6 h-6 fill-slate-950 text-slate-950" />
-                <span>Chamar no WhatsApp ({COMPANY_INFO.phoneFormatted})</span>
+                <span>Chamar no WhatsApp Oficial</span>
                 <ArrowRight className="w-5 h-5 text-slate-950" />
               </a>
 
@@ -258,6 +336,8 @@ export default function App() {
         onNavigateToPlanos={() => navigateTo('planos')}
         onNavigateToKeywordPage={(slug) => navigateTo('service', slug)}
         onOpenIndexNow={() => setIsIndexNowOpen(true)}
+        onNavigateToTermos={() => navigateTo('termos')}
+        onNavigateToPrivacidade={() => navigateTo('privacidade')}
       />
 
       {/* IndexNow Interactive Protocol Modal */}

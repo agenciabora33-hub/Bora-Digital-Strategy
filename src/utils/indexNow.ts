@@ -26,7 +26,9 @@ export const CORE_SITE_SLUGS = [
   'anuncios-google-ads',
   'seo-aeo-sxo',
   'aparecer-no-google',
-  'site-para-profissionais-liberais'
+  'site-para-profissionais-liberais',
+  'termos-de-uso',
+  'politicas-de-privacidade'
 ];
 
 export interface IndexNowResult {

@@ -1,14 +1,22 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText, ArrowRight, Zap } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText, ArrowRight, Zap, MessageCircle } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl, KEYWORD_MATRIX } from '../data/content';
 
 interface FooterProps {
   onNavigateToPlanos?: () => void;
   onNavigateToKeywordPage?: (slug: string) => void;
   onOpenIndexNow?: () => void;
+  onNavigateToTermos?: () => void;
+  onNavigateToPrivacidade?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateToKeywordPage, onOpenIndexNow }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onNavigateToPlanos,
+  onNavigateToKeywordPage,
+  onOpenIndexNow,
+  onNavigateToTermos,
+  onNavigateToPrivacidade
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -97,8 +105,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
               >
-                <Phone className="w-4 h-4 shrink-0" />
-                <span>WhatsApp: {COMPANY_INFO.phoneFormatted}</span>
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span>WhatsApp Oficial</span>
               </a>
 
               <a
@@ -248,12 +256,91 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
         </div>
       </div>
 
+      {/* Informações Legais & Atendimento Regulamentar */}
+      <div className="bg-[#0D0F12] border-t border-gray-900 px-4 sm:px-6 lg:px-8 py-5 text-xs text-stone-400">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <p className="font-semibold text-stone-300">
+              Informações Legais & Cadastro Corporativo:
+            </p>
+            <p className="text-[11px] text-stone-400">
+              {COMPANY_INFO.fullName} • Sede: {COMPANY_INFO.address.fullFormatted} • CEP {COMPANY_INFO.address.zipCode}
+            </p>
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px]">
+              <span className="text-stone-400">Diretrizes de Conformidade:</span>
+              <a
+                href="/termos-de-uso"
+                onClick={(e) => {
+                  if (onNavigateToTermos) {
+                    e.preventDefault();
+                    onNavigateToTermos();
+                  }
+                }}
+                className="text-stone-300 hover:text-[#FA842D] underline decoration-stone-700 underline-offset-2 transition-colors font-medium"
+              >
+                Termos de Uso
+              </a>
+              <span className="text-stone-600">•</span>
+              <a
+                href="/politicas-de-privacidade"
+                onClick={(e) => {
+                  if (onNavigateToPrivacidade) {
+                    e.preventDefault();
+                    onNavigateToPrivacidade();
+                  }
+                }}
+                className="text-stone-300 hover:text-emerald-400 underline decoration-stone-700 underline-offset-2 transition-colors font-medium"
+              >
+                Políticas de Privacidade (LGPD · Google · Bing · Meta)
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5">
+            <div className="text-[11px] text-stone-300 bg-stone-900 border border-stone-800 px-3.5 py-2 rounded-xl">
+              <span className="text-stone-400">Telefone Institucional (Legal): </span>
+              <strong className="text-stone-200">{COMPANY_INFO.phoneFormatted}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Legal bar */}
       <div className="bg-black/60 border-t border-gray-900 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>
-            © {new Date().getFullYear()} {COMPANY_INFO.fullName}. Todos os direitos reservados.
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
+            <p>
+              © {new Date().getFullYear()} {COMPANY_INFO.fullName}. Todos os direitos reservados.
+            </p>
+            <span className="hidden sm:inline text-stone-600">|</span>
+            <div className="flex items-center gap-3 text-stone-400">
+              <a
+                href="/termos-de-uso"
+                onClick={(e) => {
+                  if (onNavigateToTermos) {
+                    e.preventDefault();
+                    onNavigateToTermos();
+                  }
+                }}
+                className="hover:text-white transition-colors"
+              >
+                Termos de Uso
+              </a>
+              <span>•</span>
+              <a
+                href="/politicas-de-privacidade"
+                onClick={(e) => {
+                  if (onNavigateToPrivacidade) {
+                    e.preventDefault();
+                    onNavigateToPrivacidade();
+                  }
+                }}
+                className="hover:text-white transition-colors"
+              >
+                Privacidade
+              </a>
+            </div>
+          </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {onOpenIndexNow && (

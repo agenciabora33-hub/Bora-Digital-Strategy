@@ -566,8 +566,15 @@ export const ServiceKeywordPage: React.FC<ServiceKeywordPageProps> = ({ slug, on
                       </span>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>WhatsApp Oficial: {COMPANY_INFO.phoneFormatted}</span>
+                      <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <a
+                        href={buildWhatsAppUrl(pageData.hero.whatsappMessage)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+                      >
+                        Atendimento: WhatsApp Oficial
+                      </a>
                     </div>
                     <div className="flex items-center gap-2.5">
                       <Clock className="w-4 h-4 text-amber-400 shrink-0" />
@@ -984,8 +991,15 @@ export const ServiceKeywordPage: React.FC<ServiceKeywordPageProps> = ({ slug, on
       </main>
 
       {/* Footer Simples da Página Dedicada */}
-      <footer className="bg-black/80 border-t border-stone-900 py-6 text-center text-xs text-stone-500">
-        <p>© {new Date().getFullYear()} {COMPANY_INFO.fullName}. Sede no Bairro Exposição em Caxias do Sul/RS · Atendimento em Todo o Brasil.</p>
+      <footer className="bg-black/80 border-t border-stone-900 py-6 px-4 text-center text-xs text-stone-500">
+        <div className="max-w-7xl mx-auto space-y-2">
+          <p>© {new Date().getFullYear()} {COMPANY_INFO.fullName}. Sede no Bairro Exposição em Caxias do Sul/RS · Atendimento em Todo o Brasil.</p>
+          <div className="flex items-center justify-center gap-3 text-[11px] text-stone-400">
+            <a href="/termos-de-uso" className="hover:text-white underline">Termos de Uso</a>
+            <span>•</span>
+            <a href="/politicas-de-privacidade" className="hover:text-white underline">Políticas de Privacidade</a>
+          </div>
+        </div>
       </footer>
     </article>
   );

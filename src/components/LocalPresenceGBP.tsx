@@ -51,11 +51,19 @@ export const LocalPresenceGBP: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-3 text-sm text-gray-300 pt-3 border-t border-gray-800">
-                <Phone className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
+                <MessageCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-white block">Canal Direto de Conversão:</strong>
-                  <span>WhatsApp & Telefone: <strong>{COMPANY_INFO.phoneFormatted}</strong></span>
-                  <span className="block text-gray-400 text-xs">E-mail corporativo: {COMPANY_INFO.email}</span>
+                  <a
+                    href={buildWhatsAppUrl("Olá! Gostaria de conversar com a Bora Digital Strategy pelo WhatsApp Oficial.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:text-emerald-300 font-bold transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>WhatsApp Oficial</span>
+                    <span className="text-[11px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold">Online</span>
+                  </a>
+                  <span className="block text-gray-400 text-xs mt-0.5">E-mail corporativo: {COMPANY_INFO.email}</span>
                 </div>
               </div>
             </div>

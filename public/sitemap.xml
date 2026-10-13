@@ -79,4 +79,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Páginas Institucionais & Legais (Google, Bing, Meta & LGPD) -->
+  <url>
+    <loc>https://ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/termos-de-uso</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/politicas-de-privacidade</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

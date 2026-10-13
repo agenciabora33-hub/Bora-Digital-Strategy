@@ -106,7 +106,7 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({ 
         href={buildWhatsAppUrl("Olá! Gostaria de falar com a Bora Digital Strategy pelo WhatsApp.")}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Conversar pelo WhatsApp no número 54981164282"
+        aria-label="Conversar pelo WhatsApp Oficial"
         onClick={() => {
           trackWhatsAppConversion('floating_main_button');
         }}

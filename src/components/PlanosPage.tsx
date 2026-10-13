@@ -169,7 +169,7 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
               className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-md active:scale-95"
             >
               <MessageCircle className="w-4 h-4 fill-slate-950 text-slate-950 shrink-0" />
-              <span className="hidden sm:inline">WhatsApp: {COMPANY_INFO.phoneFormatted}</span>
+              <span className="hidden sm:inline">WhatsApp Oficial</span>
               <span className="sm:hidden">WhatsApp</span>
             </a>
           </div>
@@ -560,13 +560,24 @@ export const PlanosPage: React.FC<PlanosPageProps> = ({ onBackToHome }) => {
               {COMPANY_INFO.address.street}, {COMPANY_INFO.address.suite} • {COMPANY_INFO.address.neighborhood}, {COMPANY_INFO.address.city} - {COMPANY_INFO.address.state}
             </p>
             <p className="text-emerald-400 font-bold">
-              WhatsApp de Atendimento: {COMPANY_INFO.phoneFormatted}
+              <a
+                href={buildWhatsAppUrl("Olá! Gostaria de conversar com a Bora Digital Strategy pelo WhatsApp Oficial sobre os planos.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5"
+              >
+                <span>Atendimento: WhatsApp Oficial</span>
+              </a>
             </p>
           </div>
 
-          <p className="text-gray-500 pt-3 border-t border-gray-900 w-full text-[11px]">
-            © {new Date().getFullYear()} Bora Digital Strategy. Proposta comercial com validade de 15 dias.
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-3 border-t border-gray-900 w-full text-[11px] text-gray-500">
+            <span>© {new Date().getFullYear()} Bora Digital Strategy. Proposta comercial com validade de 15 dias.</span>
+            <span>•</span>
+            <a href="/termos-de-uso" className="text-gray-400 hover:text-white underline">Termos de Uso</a>
+            <span>•</span>
+            <a href="/politicas-de-privacidade" className="text-gray-400 hover:text-white underline">Políticas de Privacidade</a>
+          </div>
         </div>
       </footer>
     </div>

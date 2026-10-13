@@ -21,15 +21,20 @@ export const COMPANY_INFO = {
   coverage: "Atendimento presencial e online em Caxias do Sul, Serra Gaúcha, todo o Brasil e Exterior.",
   workingHours: "Segunda a Sexta: 08:00 às 18:30 | Plantão de Atendimento no WhatsApp",
   googleMapsQueryUrl: "https://www.google.com/maps/search/?api=1&query=Rua+Carlos+Giesen+1297+Bairro+Exposicao+Caxias+do+Sul+RS",
+  whatsappDirectUrl: "https://wa.me/message/N5NVC77KSMOKE1",
 };
 
+export const WHATSAPP_DIRECT_URL = "https://wa.me/message/N5NVC77KSMOKE1";
+
 /**
- * Creates a clean direct WhatsApp click-to-chat URL with a pre-formatted message
+ * Creates a clean direct WhatsApp link using the official short link https://wa.me/message/N5NVC77KSMOKE1
  */
 export function buildWhatsAppUrl(message?: string): string {
-  const defaultText = "Olá! Gostaria de uma consultoria para minha empresa aparecer no Google e gerar contatos no WhatsApp.";
-  const text = encodeURIComponent(message || defaultText);
-  return `https://wa.me/5554981164282?text=${text}`;
+  if (message && message.trim().length > 0) {
+    const text = encodeURIComponent(message.trim());
+    return `https://wa.me/message/N5NVC77KSMOKE1?text=${text}`;
+  }
+  return "https://wa.me/message/N5NVC77KSMOKE1";
 }
 
 export const CERTIFICATIONS: Certification[] = [

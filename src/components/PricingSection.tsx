@@ -170,7 +170,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenPlanosPage
                   </a>
 
                   <p className="text-[11px] text-center text-gray-400 mt-2">
-                    Resposta em minutos via WhatsApp ({COMPANY_INFO.phoneFormatted})
+                    Resposta em minutos via WhatsApp Oficial
                   </p>
                 </div>
               </div>

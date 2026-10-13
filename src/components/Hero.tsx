@@ -131,7 +131,7 @@ export const Hero: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
               </span>
               <span>
-                Atendimento global online agora: resposta em menos de 5 min via WhatsApp ({COMPANY_INFO.phoneFormatted})
+                Atendimento global online agora: resposta em menos de 5 min via WhatsApp Oficial
               </span>
             </div>
 
