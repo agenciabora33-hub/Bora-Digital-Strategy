@@ -1,13 +1,14 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUp, FileText, ArrowRight, Zap } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl, KEYWORD_MATRIX } from '../data/content';
 
 interface FooterProps {
   onNavigateToPlanos?: () => void;
   onNavigateToKeywordPage?: (slug: string) => void;
+  onOpenIndexNow?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateToKeywordPage }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateToKeywordPage, onOpenIndexNow }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -254,7 +255,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToPlanos, onNavigateTo
             © {new Date().getFullYear()} {COMPANY_INFO.fullName}. Todos os direitos reservados.
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-3">
+            {onOpenIndexNow && (
+              <button
+                type="button"
+                onClick={onOpenIndexNow}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 hover:text-amber-200 transition-all cursor-pointer font-medium text-xs shadow-sm hover:shadow-amber-500/10"
+                title="Visualizar status e submissões do protocolo IndexNow (Microsoft Bing, Yandex, Seznam)"
+              >
+                <Zap className="w-3.5 h-3.5 text-amber-400" />
+                <span>IndexNow: Ativo (Bing)</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+              </button>
+            )}
+
             <a
               href="https://profile.google.com/@example"
               aria-label="Find us on Google Search"

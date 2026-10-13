@@ -20,6 +20,8 @@ import { Ambient3DGrid } from './components/3d/Ambient3DGrid';
 import { MessageCircle, ArrowRight, CheckCircle2, ShieldCheck, PhoneCall } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl } from './data/content';
 import { SEO_PAGES } from './data/seoPages';
+import { IndexNowModal } from './components/IndexNowModal';
+import { autoSyncIndexNowIfDue } from './utils/indexNow';
 
 // Lazy load dedicated sub-pages so they do not burden the initial landing page bundle
 const PlanosPage = React.lazy(() =>
@@ -69,8 +71,12 @@ export default function App() {
   const [routeState, setRouteState] = useState<{ view: 'home' | 'planos' | 'service'; slug?: string }>(() => {
     return detectInitialRoute();
   });
+  const [isIndexNowOpen, setIsIndexNowOpen] = useState(false);
 
   useEffect(() => {
+    // Automatically ping IndexNow (Bing/Yandex) for new/updated URLs (throttled 24h)
+    autoSyncIndexNowIfDue();
+
     const handleLocationChange = () => {
       setRouteState(detectInitialRoute());
     };
@@ -112,6 +118,7 @@ export default function App() {
       <React.Suspense fallback={<div className="min-h-screen bg-[#121417] flex items-center justify-center text-stone-400">Carregando planos...</div>}>
         <PlanosPage onBackToHome={() => navigateTo('home')} />
         <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+        <IndexNowModal isOpen={isIndexNowOpen} onClose={() => setIsIndexNowOpen(false)} />
       </React.Suspense>
     );
   }
@@ -125,6 +132,7 @@ export default function App() {
           onNavigate={(view, slug) => navigateTo(view as any, slug)}
         />
         <WhatsAppFloatingButton onNavigateToPlanos={() => navigateTo('planos')} />
+        <IndexNowModal isOpen={isIndexNowOpen} onClose={() => setIsIndexNowOpen(false)} />
       </React.Suspense>
     );
   }
@@ -235,7 +243,11 @@ export default function App() {
       <Footer
         onNavigateToPlanos={() => navigateTo('planos')}
         onNavigateToKeywordPage={(slug) => navigateTo('service', slug)}
+        onOpenIndexNow={() => setIsIndexNowOpen(true)}
       />
+
+      {/* IndexNow Interactive Protocol Modal */}
+      <IndexNowModal isOpen={isIndexNowOpen} onClose={() => setIsIndexNowOpen(false)} />
     </div>
   );
 }
