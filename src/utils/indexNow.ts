@@ -17,12 +17,16 @@ export const INDEXNOW_SEARCH_ENGINES = [
 
 export const CORE_SITE_SLUGS = [
   '',
+  'planos',
   'criacao-de-sites',
+  'site-profissional',
   'google-meu-negocio',
+  'cadastro-google-meu-negocio',
   'anuncio-patrocinado-google',
-  'trafego-pago-caxias-do-sul',
-  'consultoria-seo-aeo',
-  'planos'
+  'anuncios-google-ads',
+  'seo-aeo-sxo',
+  'aparecer-no-google',
+  'site-para-profissionais-liberais'
 ];
 
 export interface IndexNowResult {

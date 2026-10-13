@@ -22,6 +22,7 @@ import { COMPANY_INFO, buildWhatsAppUrl } from './data/content';
 import { SEO_PAGES } from './data/seoPages';
 import { IndexNowModal } from './components/IndexNowModal';
 import { autoSyncIndexNowIfDue } from './utils/indexNow';
+import { trackPageView } from './utils/analytics';
 
 // Lazy load dedicated sub-pages so they do not burden the initial landing page bundle
 const PlanosPage = React.lazy(() =>
@@ -88,6 +89,19 @@ export default function App() {
       window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
+
+  useEffect(() => {
+    let currentPath = '/';
+    let currentTitle = 'Bora Digital Strategy | Atendimento Global • Sede em Caxias do Sul';
+    if (routeState.view === 'planos') {
+      currentPath = '/planos';
+      currentTitle = 'Planos & Proposta Comercial | Bora Digital Strategy';
+    } else if (routeState.view === 'service' && routeState.slug) {
+      currentPath = `/${routeState.slug}`;
+      currentTitle = SEO_PAGES[routeState.slug]?.seo.title || currentTitle;
+    }
+    trackPageView(currentPath, currentTitle);
+  }, [routeState]);
 
   const navigateTo = (view: 'home' | 'planos' | 'service', slug?: string) => {
     setRouteState({ view, slug });

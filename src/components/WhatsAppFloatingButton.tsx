@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, X, Sparkles, Send, Check, FileText, ArrowRight } from 'lucide-react';
 import { COMPANY_INFO, buildWhatsAppUrl } from '../data/content';
+import { trackWhatsAppConversion } from '../utils/analytics';
 
 interface WhatsAppFloatingButtonProps {
   onNavigateToPlanos?: () => void;
@@ -85,7 +86,10 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({ 
                 href={buildWhatsAppUrl(opt.message)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setHasInteracted(true)}
+                onClick={() => {
+                  setHasInteracted(true);
+                  trackWhatsAppConversion('floating_tooltip', opt.label);
+                }}
                 className="text-[11px] font-semibold text-emerald-300 hover:text-white bg-stone-900 hover:bg-emerald-950/60 border border-stone-800 hover:border-emerald-500/50 px-3 py-1.5 rounded-xl transition-all flex items-center justify-between group"
               >
                 <span>{opt.label}</span>
@@ -103,6 +107,9 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({ 
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Conversar pelo WhatsApp no número 54981164282"
+        onClick={() => {
+          trackWhatsAppConversion('floating_main_button');
+        }}
         className="group relative flex items-center gap-3 bg-gradient-to-tr from-[#20ba59] to-[#25D366] hover:brightness-105 active:scale-95 text-slate-950 p-4 sm:px-5 sm:py-3.5 rounded-full shadow-[0_12px_32px_rgba(37,211,102,0.45)] border border-emerald-300/40 transition-all duration-200 animate-whatsapp-pulse cursor-pointer hover:-translate-y-1"
       >
         {/* Pulsing indicator dot */}
