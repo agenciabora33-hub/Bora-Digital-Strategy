@@ -5,8 +5,8 @@
  * Verification File: /d327c1871dbe4d068c9f53d68108a98d.txt
  */
 
-export const INDEXNOW_KEY = 'd327c1871dbe4d068c9f53d68108a98d';
-export const INDEXNOW_KEY_FILE = 'd327c1871dbe4d068c9f53d68108a98d.txt';
+export const INDEXNOW_KEY = 'f49766fae89f46cfbfb86b2daaede1ab';
+export const INDEXNOW_KEY_FILE = 'f49766fae89f46cfbfb86b2daaede1ab.txt';
 export const INDEXNOW_SEARCH_ENGINES = [
   { name: 'Microsoft Bing', endpoint: 'https://www.bing.com/indexnow' },
   { name: 'IndexNow Central Hub', endpoint: 'https://api.indexnow.org/indexnow' },

@@ -54,6 +54,7 @@ end
 if string.match(request_uri, "^/sitemap") or
    string.match(request_uri, "^/robots%.txt") or
    string.match(request_uri, "^/bingsiteauth%.xml") or
+   string.match(request_uri, "^/f49766fae89f46cfbfb86b2daaede1ab%.txt") or
    string.match(request_uri, "^/d327c1871dbe4d068c9f53d68108a98d%.txt") or
    string.match(request_uri, "^/google[%w%-_]+%.html") or
    string.match(request_uri, "^/favicon") or

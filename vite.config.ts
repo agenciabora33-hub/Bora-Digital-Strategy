@@ -41,7 +41,7 @@ export default defineConfig(() => {
 
             // Bing Webmaster Tools XML Authentication
             if (urlPathLower === '/bingsiteauth.xml') {
-              const xmlContent = `<?xml version="1.0"?>\n<users>\n\t<user>d327c1871dbe4d068c9f53d68108a98d</user>\n</users>`;
+              const xmlContent = `<?xml version="1.0"?>\n<users>\n\t<user>f49766fae89f46cfbfb86b2daaede1ab</user>\n\t<user>d327c1871dbe4d068c9f53d68108a98d</user>\n</users>`;
               res.setHeader('Content-Type', 'application/xml; charset=utf-8');
               res.setHeader('Content-Length', Buffer.byteLength(xmlContent, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
@@ -53,7 +53,21 @@ export default defineConfig(() => {
               return;
             }
 
-            // IndexNow / Bing Webmaster Plaintext Key Authentication
+            // IndexNow / Bing Webmaster Plaintext Key Authentication (Official Key)
+            if (urlPathLower === '/f49766fae89f46cfbfb86b2daaede1ab.txt') {
+              const txtContent = 'f49766fae89f46cfbfb86b2daaede1ab';
+              res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(txtContent, 'utf-8'));
+              res.setHeader('Cache-Control', 'public, max-age=3600');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
+              res.end(txtContent);
+              return;
+            }
+
+            // IndexNow / Bing Webmaster Legacy Key Authentication
             if (urlPathLower === '/d327c1871dbe4d068c9f53d68108a98d.txt') {
               const txtContent = 'd327c1871dbe4d068c9f53d68108a98d';
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
@@ -160,8 +174,8 @@ export default defineConfig(() => {
               res.end(
                 JSON.stringify({
                   status: 'ready',
-                  key: 'd327c1871dbe4d068c9f53d68108a98d',
-                  keyFile: '/d327c1871dbe4d068c9f53d68108a98d.txt',
+                  key: 'f49766fae89f46cfbfb86b2daaede1ab',
+                  keyFile: '/f49766fae89f46cfbfb86b2daaede1ab.txt',
                   engines: ['Microsoft Bing', 'Yandex', 'Seznam.cz', 'Naver'],
                 })
               );
@@ -179,10 +193,10 @@ export default defineConfig(() => {
                   const data = JSON.parse(body || '{}');
                   const targetPayload = {
                     host: data.host || currentHost,
-                    key: data.key || 'd327c1871dbe4d068c9f53d68108a98d',
+                    key: data.key || 'f49766fae89f46cfbfb86b2daaede1ab',
                     keyLocation:
                       data.keyLocation ||
-                      `https://${data.host || currentHost}/d327c1871dbe4d068c9f53d68108a98d.txt`,
+                      `https://${data.host || currentHost}/f49766fae89f46cfbfb86b2daaede1ab.txt`,
                     urlList: data.urlList || [],
                   };
 
