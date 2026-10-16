@@ -22,4 +22,5 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
-Sitemap: https://ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/sitemap.xml
+Sitemap: https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/sitemap.xml
+Sitemap: https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/sitemap.txt

@@ -13,11 +13,14 @@ export default defineConfig(() => {
         configureServer(server) {
           server.middlewares.use(async (req, res, next) => {
             const urlPath = req.url ? req.url.split('?')[0] : '';
-            const hostHeader = (req.headers['x-forwarded-host'] || req.headers.host || 'ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app') as string;
-            const currentHost = hostHeader.split(':')[0].includes('run.app') || hostHeader.includes('.')
-              ? hostHeader.split(':')[0]
-              : 'ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+            const rawHost = (req.headers['x-forwarded-host'] || req.headers.host || '').toString();
+            // Clean host: take first if comma-separated proxy list and strip port
+            const hostClean = rawHost.split(',')[0].trim().split(':')[0];
+            const currentHost = (hostClean && (hostClean.includes('run.app') || hostClean.includes('.')))
+              ? hostClean
+              : 'ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
             const baseUrl = `https://${currentHost}`;
+            const todayIso = new Date().toISOString().split('T')[0];
 
             // Bing Webmaster Tools XML Authentication
             if (urlPath === '/BingSiteAuth.xml') {
@@ -54,12 +57,14 @@ export default defineConfig(() => {
                 { loc: `${baseUrl}/seo-aeo-sxo`, priority: '0.9', changefreq: 'weekly' },
                 { loc: `${baseUrl}/aparecer-no-google`, priority: '0.9', changefreq: 'weekly' },
                 { loc: `${baseUrl}/site-para-profissionais-liberais`, priority: '0.9', changefreq: 'weekly' },
+                { loc: `${baseUrl}/termos-de-uso`, priority: '0.6', changefreq: 'monthly' },
+                { loc: `${baseUrl}/politicas-de-privacidade`, priority: '0.6', changefreq: 'monthly' },
               ];
 
               const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${siteUrls
                 .map(
                   (u) =>
-                    `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>2026-10-13</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
+                    `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${todayIso}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
                 )
                 .join('\n')}\n</urlset>`;
 
@@ -70,9 +75,33 @@ export default defineConfig(() => {
               return;
             }
 
+            // Plain text Sitemap (Alternative standard supported by Google and Bing)
+            if (urlPath === '/sitemap.txt') {
+              const siteUrls = [
+                `${baseUrl}/`,
+                `${baseUrl}/planos`,
+                `${baseUrl}/criacao-de-sites`,
+                `${baseUrl}/site-profissional`,
+                `${baseUrl}/google-meu-negocio`,
+                `${baseUrl}/cadastro-google-meu-negocio`,
+                `${baseUrl}/anuncio-patrocinado-google`,
+                `${baseUrl}/anuncios-google-ads`,
+                `${baseUrl}/seo-aeo-sxo`,
+                `${baseUrl}/aparecer-no-google`,
+                `${baseUrl}/site-para-profissionais-liberais`,
+                `${baseUrl}/termos-de-uso`,
+                `${baseUrl}/politicas-de-privacidade`,
+              ];
+              res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.setHeader('Cache-Control', 'public, max-age=3600');
+              res.setHeader('X-Robots-Tag', 'all');
+              res.end(siteUrls.join('\n') + '\n');
+              return;
+            }
+
             // Dynamic robots.txt
             if (urlPath === '/robots.txt') {
-              const robotsTxt = `User-agent: *\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: Applebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: FacebookBot\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\n`;
+              const robotsTxt = `User-agent: *\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: Applebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: FacebookBot\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nSitemap: ${baseUrl}/sitemap.txt\n`;
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
               res.setHeader('Cache-Control', 'public, max-age=3600');
               res.end(robotsTxt);

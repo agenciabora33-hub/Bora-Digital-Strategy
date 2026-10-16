@@ -50,7 +50,7 @@ export function getAllSiteUrls(customOrigin?: string): string[] {
     customOrigin ||
     (typeof window !== 'undefined' && window.location.origin
       ? window.location.origin
-      : 'https://ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app');
+      : 'https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app');
 
   return CORE_SITE_SLUGS.map((slug) => (slug ? `${origin}/${slug}` : `${origin}/`));
 }
@@ -62,12 +62,12 @@ export async function submitToIndexNow(customUrls?: string[]): Promise<IndexNowR
   const origin =
     typeof window !== 'undefined' && window.location.origin
       ? window.location.origin
-      : 'https://ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+      : 'https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
 
   const host =
     typeof window !== 'undefined' && window.location.host
       ? window.location.host
-      : 'ais-dev-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+      : 'ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
 
   const urls = customUrls && customUrls.length > 0 ? customUrls : getAllSiteUrls(origin);
   const keyLocation = `${origin}/${INDEXNOW_KEY_FILE}`;
