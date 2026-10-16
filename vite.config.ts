@@ -22,28 +22,57 @@ export default defineConfig(() => {
             const baseUrl = `https://${currentHost}`;
             const todayIso = new Date().toISOString().split('T')[0];
 
-            // Bing Webmaster Tools XML Authentication
-            if (urlPath === '/BingSiteAuth.xml') {
-              res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+            const urlPathLower = urlPath.toLowerCase().replace(/\/$/, '') || '/';
+
+            // Google HTML File Verification fallback (e.g., /googlezh45CJj-9q98u4wZT4AMJa3dw9fvwlX4uNVkrJZ2x2Q.html)
+            if (urlPathLower.startsWith('/google') && urlPathLower.endsWith('.html')) {
+              const fileName = urlPath.replace(/^\//, '');
+              const content = `google-site-verification: ${fileName}`;
+              res.setHeader('Content-Type', 'text/html; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(content, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
-              res.end(`<?xml version="1.0"?>\n<users>\n\t<user>d327c1871dbe4d068c9f53d68108a98d</user>\n</users>`);
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
+              res.end(content);
+              return;
+            }
+
+            // Bing Webmaster Tools XML Authentication
+            if (urlPathLower === '/bingsiteauth.xml') {
+              const xmlContent = `<?xml version="1.0"?>\n<users>\n\t<user>d327c1871dbe4d068c9f53d68108a98d</user>\n</users>`;
+              res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(xmlContent, 'utf-8'));
+              res.setHeader('Cache-Control', 'public, max-age=3600');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
+              res.end(xmlContent);
               return;
             }
 
             // IndexNow / Bing Webmaster Plaintext Key Authentication
-            if (urlPath === '/d327c1871dbe4d068c9f53d68108a98d.txt') {
+            if (urlPathLower === '/d327c1871dbe4d068c9f53d68108a98d.txt') {
+              const txtContent = 'd327c1871dbe4d068c9f53d68108a98d';
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(txtContent, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
-              res.end('d327c1871dbe4d068c9f53d68108a98d');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
+              res.end(txtContent);
               return;
             }
 
             // Dynamic Sitemap (compatible with Microsoft Bing, Google, Yandex)
             if (
-              urlPath === '/sitemap.xml' ||
-              urlPath === '/sitemaps.xml' ||
-              urlPath === '/sitemap_index.xml' ||
-              urlPath === '/sitemap'
+              urlPathLower === '/sitemap.xml' ||
+              urlPathLower === '/sitemaps.xml' ||
+              urlPathLower === '/sitemap_index.xml' ||
+              urlPathLower === '/sitemap'
             ) {
               const siteUrls = [
                 { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly' },
@@ -69,14 +98,19 @@ export default defineConfig(() => {
                 .join('\n')}\n</urlset>`;
 
               res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(sitemapXml, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
               res.setHeader('X-Robots-Tag', 'all');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
               res.end(sitemapXml);
               return;
             }
 
             // Plain text Sitemap (Alternative standard supported by Google and Bing)
-            if (urlPath === '/sitemap.txt') {
+            if (urlPathLower === '/sitemap.txt') {
               const siteUrls = [
                 `${baseUrl}/`,
                 `${baseUrl}/planos`,
@@ -92,18 +126,29 @@ export default defineConfig(() => {
                 `${baseUrl}/termos-de-uso`,
                 `${baseUrl}/politicas-de-privacidade`,
               ];
+              const txtContent = siteUrls.join('\n') + '\n';
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(txtContent, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
               res.setHeader('X-Robots-Tag', 'all');
-              res.end(siteUrls.join('\n') + '\n');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
+              res.end(txtContent);
               return;
             }
 
             // Dynamic robots.txt
-            if (urlPath === '/robots.txt') {
-              const robotsTxt = `User-agent: *\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: Applebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: FacebookBot\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nSitemap: ${baseUrl}/sitemap.txt\n`;
+            if (urlPathLower === '/robots.txt') {
+              const robotsTxt = `User-agent: *\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: Google-InspectionTool\nAllow: /\n\nUser-agent: GoogleOther\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: Applebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: FacebookBot\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nSitemap: ${baseUrl}/sitemap.txt\n`;
               res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+              res.setHeader('Content-Length', Buffer.byteLength(robotsTxt, 'utf-8'));
               res.setHeader('Cache-Control', 'public, max-age=3600');
+              if (req.method === 'HEAD') {
+                res.end();
+                return;
+              }
               res.end(robotsTxt);
               return;
             }

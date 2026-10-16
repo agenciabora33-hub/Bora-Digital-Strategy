@@ -129,19 +129,51 @@ export default function App() {
   useEffect(() => {
     let currentPath = '/';
     let currentTitle = 'Bora Digital Strategy | Atendimento Global • Sede em Caxias do Sul';
+    let currentDesc =
+      'Especialistas em dar máxima visibilidade a negócios locais para gerar mais clientes, vendas e agendamentos. Construção de Sites, gestão do Perfil do Google e Anúncios Patrocinados.';
+
     if (routeState.view === 'planos') {
       currentPath = '/planos';
       currentTitle = 'Planos & Proposta Comercial | Bora Digital Strategy';
+      currentDesc =
+        'Confira nossos planos e soluções digitais sob medida para sua empresa crescer no Google com previsibilidade.';
     } else if (routeState.view === 'termos') {
       currentPath = '/termos-de-uso';
       currentTitle = 'Termos de Uso & Condições Gerais | Bora Digital Strategy';
+      currentDesc =
+        'Termos de Uso e Condições Gerais dos serviços de marketing digital e desenvolvimento web da Bora Digital Strategy.';
     } else if (routeState.view === 'privacidade') {
       currentPath = '/politicas-de-privacidade';
       currentTitle = 'Política de Privacidade & Proteção de Dados (LGPD) | Bora Digital Strategy';
+      currentDesc =
+        'Política de Privacidade e Proteção de Dados em conformidade com a LGPD e diretrizes de Google, Bing e Meta.';
     } else if (routeState.view === 'service' && routeState.slug) {
       currentPath = `/${routeState.slug}`;
       currentTitle = SEO_PAGES[routeState.slug]?.seo.title || currentTitle;
+      currentDesc = SEO_PAGES[routeState.slug]?.seo.description || currentDesc;
     }
+
+    if (typeof window !== 'undefined') {
+      document.title = currentTitle;
+      const canonicalUrl = `https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app${currentPath === '/' ? '/' : currentPath}`;
+      const canonicalEl = document.querySelector('link[rel="canonical"]');
+      if (canonicalEl) {
+        canonicalEl.setAttribute('href', canonicalUrl);
+      }
+      const ogUrlEl = document.querySelector('meta[property="og:url"]');
+      if (ogUrlEl) {
+        ogUrlEl.setAttribute('content', canonicalUrl);
+      }
+      const twitterUrlEl = document.querySelector('meta[name="twitter:url"]');
+      if (twitterUrlEl) {
+        twitterUrlEl.setAttribute('content', canonicalUrl);
+      }
+      const descEl = document.querySelector('meta[name="description"]');
+      if (descEl) {
+        descEl.setAttribute('content', currentDesc);
+      }
+    }
+
     trackPageView(currentPath, currentTitle);
   }, [routeState]);
 
