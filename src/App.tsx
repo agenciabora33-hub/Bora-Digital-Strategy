@@ -155,7 +155,11 @@ export default function App() {
 
     if (typeof window !== 'undefined') {
       document.title = currentTitle;
-      const canonicalUrl = `https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app${currentPath === '/' ? '/' : currentPath}`;
+      const origin =
+        window.location.origin && !window.location.origin.includes('localhost')
+          ? window.location.origin
+          : 'https://bora-digital-strategy.vercel.app';
+      const canonicalUrl = `${origin}${currentPath === '/' ? '/' : currentPath}`;
       const canonicalEl = document.querySelector('link[rel="canonical"]');
       if (canonicalEl) {
         canonicalEl.setAttribute('href', canonicalUrl);

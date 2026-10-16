@@ -48,9 +48,9 @@ export interface IndexNowResult {
 export function getAllSiteUrls(customOrigin?: string): string[] {
   const origin =
     customOrigin ||
-    (typeof window !== 'undefined' && window.location.origin
+    (typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost')
       ? window.location.origin
-      : 'https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app');
+      : 'https://bora-digital-strategy.vercel.app');
 
   return CORE_SITE_SLUGS.map((slug) => (slug ? `${origin}/${slug}` : `${origin}/`));
 }
@@ -60,14 +60,14 @@ export function getAllSiteUrls(customOrigin?: string): string[] {
  */
 export async function submitToIndexNow(customUrls?: string[]): Promise<IndexNowResult> {
   const origin =
-    typeof window !== 'undefined' && window.location.origin
+    typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost')
       ? window.location.origin
-      : 'https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+      : 'https://bora-digital-strategy.vercel.app';
 
   const host =
-    typeof window !== 'undefined' && window.location.host
+    typeof window !== 'undefined' && window.location.host && !window.location.host.includes('localhost')
       ? window.location.host
-      : 'ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+      : 'bora-digital-strategy.vercel.app';
 
   const urls = customUrls && customUrls.length > 0 ? customUrls : getAllSiteUrls(origin);
   const keyLocation = `${origin}/${INDEXNOW_KEY_FILE}`;

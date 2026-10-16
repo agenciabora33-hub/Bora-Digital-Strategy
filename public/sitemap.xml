@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Página Inicial / Home -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/</loc>
+    <loc>https://bora-digital-strategy.vercel.app/</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
   <!-- Planos & Proposta Comercial -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/planos</loc>
+    <loc>https://bora-digital-strategy.vercel.app/planos</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -18,13 +18,13 @@
 
   <!-- Serviço 1: Criação de Sites Profissionais -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/criacao-de-sites</loc>
+    <loc>https://bora-digital-strategy.vercel.app/criacao-de-sites</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/site-profissional</loc>
+    <loc>https://bora-digital-strategy.vercel.app/site-profissional</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -32,13 +32,13 @@
 
   <!-- Serviço 2: Gestão do Perfil da Empresa no Google (Google Meu Negócio) -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/google-meu-negocio</loc>
+    <loc>https://bora-digital-strategy.vercel.app/google-meu-negocio</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/cadastro-google-meu-negocio</loc>
+    <loc>https://bora-digital-strategy.vercel.app/cadastro-google-meu-negocio</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -46,13 +46,13 @@
 
   <!-- Serviço 3: Campanhas de Anúncio Patrocinado no Google Ads -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/anuncio-patrocinado-google</loc>
+    <loc>https://bora-digital-strategy.vercel.app/anuncio-patrocinado-google</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/anuncios-google-ads</loc>
+    <loc>https://bora-digital-strategy.vercel.app/anuncios-google-ads</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -60,13 +60,13 @@
 
   <!-- Serviço 4: SEO, AEO (Respostas de IA) e SXO -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/seo-aeo-sxo</loc>
+    <loc>https://bora-digital-strategy.vercel.app/seo-aeo-sxo</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/aparecer-no-google</loc>
+    <loc>https://bora-digital-strategy.vercel.app/aparecer-no-google</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -74,7 +74,7 @@
 
   <!-- Serviço 5: Site para Profissionais Liberais (Médicos, Advogados, Consultores) -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/site-para-profissionais-liberais</loc>
+    <loc>https://bora-digital-strategy.vercel.app/site-para-profissionais-liberais</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -82,13 +82,13 @@
 
   <!-- Páginas Institucionais & Legais (Google, Bing, Meta & LGPD) -->
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/termos-de-uso</loc>
+    <loc>https://bora-digital-strategy.vercel.app/termos-de-uso</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/politicas-de-privacidade</loc>
+    <loc>https://bora-digital-strategy.vercel.app/politicas-de-privacidade</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

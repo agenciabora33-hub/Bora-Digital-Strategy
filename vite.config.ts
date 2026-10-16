@@ -16,9 +16,9 @@ export default defineConfig(() => {
             const rawHost = (req.headers['x-forwarded-host'] || req.headers.host || '').toString();
             // Clean host: take first if comma-separated proxy list and strip port
             const hostClean = rawHost.split(',')[0].trim().split(':')[0];
-            const currentHost = (hostClean && (hostClean.includes('run.app') || hostClean.includes('.')))
+            const currentHost = (hostClean && (hostClean.includes('vercel.app') || hostClean.includes('run.app') || hostClean.includes('.')))
               ? hostClean
-              : 'ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app';
+              : 'bora-digital-strategy.vercel.app';
             const baseUrl = `https://${currentHost}`;
             const todayIso = new Date().toISOString().split('T')[0];
 

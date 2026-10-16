@@ -4,6 +4,12 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 
@@ -22,5 +28,5 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
-Sitemap: https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/sitemap.xml
-Sitemap: https://ais-pre-ntvyprsxr4fq7ffbybb62v-186713379987.us-east1.run.app/sitemap.txt
+Sitemap: https://bora-digital-strategy.vercel.app/sitemap.xml
+Sitemap: https://bora-digital-strategy.vercel.app/sitemap.txt
